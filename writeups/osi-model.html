@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="A plain-language breakdown of the OSI model and where cyberattacks target each layer."/>
+  <meta name="author" content="Ashfak Ahmad"/>
+  <title>The OSI Model Explained — Ashfak Ahmad</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body class="wup-body">
+
+<nav id="navbar" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html" aria-label="Back to portfolio home">
+      <div class="nav-logo-icon">
+        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 1L18 5.5V14.5L10 19L2 14.5V5.5L10 1Z" stroke="#22c55e" stroke-width="1.5"/><circle cx="10" cy="10" r="3" fill="#22c55e"/></svg>
+      </div>
+      <div class="nav-logo-name">Ashfak Ahmad<span>Cybersecurity Analyst</span></div>
+    </a>
+    <a class="nav-cta" href="../assets/resume/Ashfak_Ahmad_Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
+  </div>
+</nav>
+
+<header class="wup-hero">
+  <div class="container">
+    <a class="wup-back" href="../index.html#writeups">← Back to Write-Ups</a>
+    <div class="wup-eyebrow">Networking · Fundamentals</div>
+    <h1 class="wup-title">The OSI Model Explained — What It Is, How It Works, and Where Attacks Hide</h1>
+    <p class="wup-meta">By Ashfak Ahmad &nbsp;·&nbsp; 8 min read &nbsp;·&nbsp; Beginner friendly</p>
+  </div>
+</header>
+
+<main class="wup-article-wrap">
+  <div class="container">
+    <article class="wup-article">
+
+      <h2>What is the OSI Model?</h2>
+      <p>Imagine you want to send a letter to someone on the other side of the world. You write the letter, put it in an envelope, address it, hand it to a courier who puts it on a truck, then a plane, then another truck, until it arrives at the door. Each step has a job. The OSI model works exactly like that — but for data traveling across a network.</p>
+      <p><strong>OSI stands for Open Systems Interconnection.</strong> It is a framework that breaks network communication into 7 layers. Each layer has a specific job, and they all work together so that two devices — anywhere in the world — can communicate reliably.</p>
+
+      <h2>The 7 Layers — Plain English</h2>
+
+      <div class="wu-box"><div class="box-label">Layer 7 — Application</div><div class="box-body"><strong>What it does:</strong> This is the layer you actually interact with. When you open a browser, send an email, or use an app, this layer handles it.<br><br><strong>Examples:</strong> HTTP, HTTPS, SMTP, DNS, FTP.</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 7</div><div class="box-body"><strong>Phishing:</strong> Fake websites designed to steal login details.<br><strong>SQL Injection:</strong> Malicious commands typed into web inputs to extract database data.<br><strong>XSS:</strong> Injecting bad scripts into trusted websites.<br><strong>DDoS (App Layer):</strong> Flooding a web app with fake requests until it crashes.</div></div>
+
+      <div class="wu-box"><div class="box-label">Layer 6 — Presentation</div><div class="box-body"><strong>What it does:</strong> Translates data so both sides understand it. Handles encryption and compression.<br><br><strong>Examples:</strong> SSL/TLS encryption, JPEG/PNG image formats, data compression.</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 6</div><div class="box-body"><strong>SSL Stripping:</strong> Downgrades HTTPS to HTTP so attackers can read data in plain text.<br><strong>Weak Encryption Exploitation:</strong> Cracking outdated algorithms like MD5 to read private data.</div></div>
+
+      <div class="wu-box"><div class="box-label">Layer 5 — Session</div><div class="box-body"><strong>What it does:</strong> Manages conversations (sessions) between devices — opening, maintaining, and closing them.<br><br><strong>Examples:</strong> Session tokens keeping you logged into websites.</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 5</div><div class="box-body"><strong>Session Hijacking:</strong> Stealing your session token to impersonate you without a password.<br><strong>Session Fixation:</strong> Tricking you into using an attacker-controlled session ID.</div></div>
+
+      <div class="wu-box"><div class="box-label">Layer 4 — Transport</div><div class="box-body"><strong>What it does:</strong> Breaks data into segments, sends them, and reassembles them on arrival. Decides between reliable (TCP) or fast (UDP) delivery.<br><br><strong>Examples:</strong> TCP for web browsing, UDP for gaming and video.</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 4</div><div class="box-body"><strong>SYN Flood:</strong> Thousands of half-completed TCP handshakes that exhaust server resources.<br><strong>Port Scanning:</strong> Mapping open ports to find exploitable services.</div></div>
+
+      <div class="wu-box"><div class="box-label">Layer 3 — Network</div><div class="box-body"><strong>What it does:</strong> Routes data between networks using IP addresses.<br><br><strong>Examples:</strong> IP addresses, routers, ICMP (ping).</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 3</div><div class="box-body"><strong>IP Spoofing:</strong> Faking a source IP to appear as a trusted host.<br><strong>ICMP Flood:</strong> Overwhelming a target with ping requests.<br><strong>Man-in-the-Middle:</strong> Redirecting traffic through an attacker's machine.</div></div>
+
+      <div class="wu-box"><div class="box-label">Layer 2 — Data Link</div><div class="box-body"><strong>What it does:</strong> Handles local network communication using MAC addresses.<br><br><strong>Examples:</strong> Ethernet, Wi-Fi, MAC addresses, switches.</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 2</div><div class="box-body"><strong>ARP Spoofing:</strong> Linking an attacker's MAC to a legitimate IP to intercept traffic.<br><strong>MAC Flooding:</strong> Overloading switch memory to broadcast all traffic to every port.</div></div>
+
+      <div class="wu-box"><div class="box-label">Layer 1 — Physical</div><div class="box-body"><strong>What it does:</strong> The actual hardware — cables, radio signals, electrical impulses, fiber optics.<br><br><strong>Examples:</strong> Ethernet cables, Wi-Fi signals, fiber optic cables, network interface cards.</div></div>
+      <div class="wu-attack"><div class="box-label">Attacks at Layer 1</div><div class="box-body"><strong>Physical Tapping:</strong> Connecting a device directly to intercept data from cables.<br><strong>Signal Jamming:</strong> Radio interference disrupting wireless communications.<br><strong>Hardware Implants:</strong> Rogue USB or keyboard devices capturing keystrokes.</div></div>
+
+      <h2>Why Defenders Need to Understand This</h2>
+      <p>Every attack targets a specific layer. A firewall blocks threats at Layers 3 to 4. An IDS watches Layers 4 to 7. A WAF defends Layer 7. When you understand which layer is being attacked, you know which tool to reach for — and where to look in the logs.</p>
+      <p>The OSI model is not just theory. It is the map every attacker and defender uses to navigate the battlefield.</p>
+
+    </article>
+  </div>
+</main>
+
+<!-- ══ WRITE-UP NAV ══════════════════════════════════════════ -->
+<nav class="wu-page-nav" aria-label="Write-up navigation">
+  <div class="wu-nav-inner">
+    <div class="wu-nav-prev wu-nav-empty"></div>
+    <a class="wu-nav-btn wu-nav-next" href="pentest-tools.html">
+      <span class="wu-nav-label">Next Write-Up</span>
+      <span class="wu-nav-title">Best Penetration Testing Tools — A Practical Breakdown <span class="wu-nav-arrow">→</span></span>
+    </a>
+  </div>
+</nav>
+
+<footer>
+  <div class="footer-inner">
+    <small class="footer-left">© 2025 <b>Ashfak Ahmad</b></small>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a class="footer-link" href="../index.html">← Portfolio</a>
+      <a class="footer-link" href="../index.html#writeups">All Write-Ups</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
