@@ -2,18 +2,19 @@
    main.js — Ashfak Ahmad Portfolio
    Pure JavaScript — no frameworks, no libraries.
 
-   1.  goTo()          — smooth scroll to section
-   2.  toggleMenu()    — mobile hamburger open/close
-   3.  closeMenu()     — close mobile menu
-   4.  Navbar scroll   — frosted glass + active link highlight
-   5.  switchTab()     — credential tabs
-   6.  openModal()     — project case study modals
-   7.  closeModal()    — close modal on backdrop click
-   8.  forceCloseModal()— close modal on X button
-   9.  Skill bars      — animate on scroll into view
-   10. Scroll reveal   — fade-in sections on scroll
-   11. Typing animation— hero role titles
-   12. Writeup pages   — navbar scroll state
+   1.  goTo()            — smooth scroll to section
+   2.  toggleMenu()      — mobile hamburger open/close
+   3.  closeMenu()       — close mobile menu
+   4.  Navbar scroll     — frosted glass + active link highlight
+   5.  switchTab()       — legacy stub (tabs removed; credentials
+                           section now uses a static 2-column layout)
+   6.  openModal()       — project case study modals
+   7.  closeModal()      — close modal on backdrop click
+   8.  forceCloseModal() — close modal on X button
+   9.  Skill bars        — animate on scroll into view
+   10. Scroll reveal     — fade-in sections on scroll
+   11. Typing animation  — hero role titles
+   12. Writeup pages     — navbar scroll state
 ============================================================ */
 
 
@@ -77,6 +78,9 @@ function closeMenu() {
 
 
 /* ── 5. CREDENTIAL TABS ────────────────────────────────────
+   Handles Education / Cybersecurity / Cloud / Licenses tabs.
+   Adds "active" class to the clicked tab button and shows
+   the matching panel; hides all others.
 ─────────────────────────────────────────────────────────── */
 function switchTab(e, name) {
   document.querySelectorAll('.cred-panel').forEach(function (p) {
