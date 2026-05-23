@@ -469,9 +469,12 @@ body::before {
 .skill-tools { font-size:12px; color:#7a90a8; line-height:1.85; }
 
 /* ═══════════════════════════════════════════════════════════
-   CREDENTIALS
+   CREDENTIALS — original tabbed layout restored
+   Tabs: Education / Cybersecurity / Cloud / Licenses
 ═══════════════════════════════════════════════════════════ */
 #credentials {}
+
+/* Tab bar */
 .cred-nav {
   display:flex; gap:0; margin-bottom:2.5rem;
   border-bottom:1px solid var(--border0); flex-wrap:wrap;
@@ -487,32 +490,123 @@ body::before {
 .cred-tab:hover { color:#b8c8dc; }
 .cred-tab.active { color:#fff; border-bottom-color:var(--green); }
 
+/* Tab panels */
 .cred-panel { display:none; animation:panel-in .25s var(--ease); }
 .cred-panel.active { display:block; }
 @keyframes panel-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 
-.cert-grid {
+/* ── Original-style cert cards (used inside tabs) ── */
+/* Grid: auto-fill 3 columns on wide, wraps on smaller */
+.cert-grid-orig {
   display:grid; grid-template-columns:repeat(auto-fill, minmax(270px,1fr)); gap:.9rem;
 }
-.cert-card {
+.cert-card-orig {
   display:flex; align-items:center; gap:14px;
   background:var(--bg1); border:1px solid var(--border0);
   border-radius:var(--r); padding:1.1rem 1.3rem;
-  text-decoration:none; transition:border-color .25s var(--ease), background .25s var(--ease), transform .25s var(--ease), box-shadow .25s var(--ease);
+  text-decoration:none;
+  transition:border-color .25s var(--ease), background .25s var(--ease),
+             transform .25s var(--ease), box-shadow .25s var(--ease);
 }
-.cert-card:hover { border-color:var(--borderG); background:var(--bg2); transform:translateY(-2px); box-shadow:var(--sh1); }
-.cert-icon {
-  width:36px; height:36px; border-radius:9px;
+.cert-card-orig:hover { border-color:var(--borderG); background:var(--bg2); transform:translateY(-2px); box-shadow:var(--sh1); }
+.cert-icon-orig {
+  width:36px; height:36px; border-radius:9px; flex-shrink:0;
   background:var(--green3); border:1px solid rgba(34,197,94,.18);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
   transition:background .2s;
 }
-.cert-card:hover .cert-icon { background:var(--green2); }
-.cert-icon svg { width:14px; height:14px; }
-.cert-name { font-size:12.5px; font-weight:600; color:#f1f5f9; line-height:1.3; }
-.cert-org  { font-family:var(--mono); font-size:10px; color:#7a90a8; margin-top:3px; }
-.cert-link { font-family:var(--mono); font-size:9px; color:var(--green); margin-top:4px; opacity:.7; }
-.cert-card:hover .cert-link { opacity:1; }
+.cert-card-orig:hover .cert-icon-orig { background:var(--green2); }
+.cert-icon-orig svg { width:14px; height:14px; }
+.cert-name-orig { font-size:12.5px; font-weight:600; color:#f1f5f9; line-height:1.3; }
+.cert-org-orig  { font-family:var(--mono); font-size:10px; color:#7a90a8; margin-top:3px; }
+.cert-lnk-orig  { font-family:var(--mono); font-size:9px; color:var(--green); margin-top:4px; opacity:.7; }
+.cert-card-orig:hover .cert-lnk-orig { opacity:1; }
+
+/* ═══════════════════════════════════════════════════════════
+   CERTIFICATIONS SECTION — compact skill-card style
+   Sits below Credentials, not in nav bar.
+   3-col grid matching the Skills section aesthetic.
+═══════════════════════════════════════════════════════════ */
+
+/* Group label above each grid (Cybersecurity / Cloud) */
+.certs-group-label {
+  font-family:var(--mono); font-size:10px; font-weight:600;
+  letter-spacing:1.8px; text-transform:uppercase; color:var(--green);
+  margin-bottom:1rem; padding-left:.5rem;
+  border-left:2px solid var(--green);
+}
+
+/* 3-column grid — same structure as .skills-grid */
+.certs-skill-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--border0);
+  border-radius:var(--r2); overflow:hidden; border:1px solid var(--border0);
+  margin-bottom:.5rem;
+}
+
+/* Each cert card — matches .skill-card proportions exactly */
+.certs-skill-card {
+  background:var(--bg1); padding:1.75rem 2rem;
+  text-decoration:none; display:block;
+  border-left:2px solid transparent;
+  transition:background .3s var(--ease), box-shadow .3s var(--ease),
+             border-left-color .3s var(--ease);
+}
+.certs-skill-card:hover {
+  background:var(--bg2);
+  border-left-color:var(--green);
+  box-shadow:inset 0 0 0 1px rgba(34,197,94,.07);
+}
+
+/* Icon — same as .skill-icon */
+.certs-skill-icon {
+  width:40px; height:40px;
+  background:rgba(34,197,94,.08);
+  border:1px solid rgba(34,197,94,.18);
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:1rem;
+  transition:background .3s, box-shadow .3s;
+}
+.certs-skill-icon svg { width:18px; height:18px; }
+.certs-skill-card:hover .certs-skill-icon {
+  background:rgba(34,197,94,.15);
+  box-shadow:0 0 14px rgba(34,197,94,.2);
+}
+
+/* Cert name — same prominence as .skill-name */
+.certs-skill-name {
+  font-size:14px; font-weight:600; color:#f1f5f9;
+  letter-spacing:-.01em; margin-bottom:3px; display:block; line-height:1.3;
+}
+.certs-skill-org {
+  font-family:var(--mono); font-size:10px; color:#7a90a8;
+  margin-bottom:.75rem; display:block;
+}
+
+/* Progress bar removed from cert cards */
+
+/* Key skill tags — reuses existing .skill-tag style */
+.certs-skill-tags {
+  display:flex; flex-wrap:wrap; gap:5px; margin-bottom:.75rem;
+}
+
+/* Verify link */
+.certs-verify {
+  font-family:var(--mono); font-size:9.5px; color:var(--green);
+  opacity:.65; margin-top:.2rem;
+  transition:opacity .2s;
+}
+.certs-skill-card:hover .certs-verify { opacity:1; }
+
+/* Responsive */
+@media(max-width:860px) {
+  .certs-skill-grid { grid-template-columns:repeat(2,1fr); }
+  .cert-grid-orig   { grid-template-columns:1fr; }
+}
+@media(max-width:540px) {
+  .certs-skill-grid { grid-template-columns:1fr; }
+}
 
 /* ═══════════════════════════════════════════════════════════
    PROJECTS
@@ -861,19 +955,7 @@ footer {
   box-shadow: 0 12px 36px rgba(0,0,0,.35), 0 0 0 1px rgba(34,197,94,.08);
 }
 
-/* Cert cards */
-.cert-card {
-  transition: border-color .3s var(--ease),
-              background .3s var(--ease),
-              transform .3s var(--ease),
-              box-shadow .3s var(--ease);
-}
-.cert-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--borderG);
-  background: var(--bg2);
-  box-shadow: 0 12px 36px rgba(0,0,0,.35), 0 0 0 1px rgba(34,197,94,.08);
-}
+/* Cert cards — hover transitions defined in CREDENTIALS section above */
 
 /* Skill cards — glow bar, no movement (grid stays stable) */
 .skill-card {
