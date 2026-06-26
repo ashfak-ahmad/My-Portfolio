@@ -41,26 +41,54 @@
 
       <h2>The 7 Layers — Plain English</h2>
 
-      <div class="wu-box"><div class="box-label">Layer 7 — Application</div><div class="box-body"><strong>What it does:</strong> This is the layer you actually interact with. When you open a browser, send an email, or use an app, this layer handles it.<br><br><strong>Examples:</strong> HTTP, HTTPS, SMTP, DNS, FTP.</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 7</div><div class="box-body"><strong>Phishing:</strong> Fake websites designed to steal login details.<br><strong>SQL Injection:</strong> Malicious commands typed into web inputs to extract database data.<br><strong>XSS:</strong> Injecting bad scripts into trusted websites.<br><strong>DDoS (App Layer):</strong> Flooding a web app with fake requests until it crashes.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 7 — Application</h3>
+        <p><strong>What it does:</strong> This is the layer you actually interact with. When you open a browser, send an email, or use an app, this layer handles it.</p>
+        <p><strong>Examples:</strong> HTTP, HTTPS, SMTP, DNS, FTP.</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> Phishing (fake sites stealing credentials), SQL Injection, XSS, and application-layer DDoS.</p>
+      </div>
 
-      <div class="wu-box"><div class="box-label">Layer 6 — Presentation</div><div class="box-body"><strong>What it does:</strong> Translates data so both sides understand it. Handles encryption and compression.<br><br><strong>Examples:</strong> SSL/TLS encryption, JPEG/PNG image formats, data compression.</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 6</div><div class="box-body"><strong>SSL Stripping:</strong> Downgrades HTTPS to HTTP so attackers can read data in plain text.<br><strong>Weak Encryption Exploitation:</strong> Cracking outdated algorithms like MD5 to read private data.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 6 — Presentation</h3>
+        <p><strong>What it does:</strong> Translates data so both sides understand it. Handles encryption and compression.</p>
+        <p><strong>Examples:</strong> SSL/TLS encryption, JPEG/PNG image formats, data compression.</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> SSL Stripping (downgrades HTTPS to plain HTTP), exploitation of weak encryption algorithms like MD5.</p>
+      </div>
 
-      <div class="wu-box"><div class="box-label">Layer 5 — Session</div><div class="box-body"><strong>What it does:</strong> Manages conversations (sessions) between devices — opening, maintaining, and closing them.<br><br><strong>Examples:</strong> Session tokens keeping you logged into websites.</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 5</div><div class="box-body"><strong>Session Hijacking:</strong> Stealing your session token to impersonate you without a password.<br><strong>Session Fixation:</strong> Tricking you into using an attacker-controlled session ID.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 5 — Session</h3>
+        <p><strong>What it does:</strong> Manages conversations (sessions) between devices — opening, maintaining, and closing them.</p>
+        <p><strong>Examples:</strong> Session tokens keeping you logged into websites.</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> Session Hijacking (stealing your token to impersonate you), Session Fixation (forcing a known session ID).</p>
+      </div>
 
-      <div class="wu-box"><div class="box-label">Layer 4 — Transport</div><div class="box-body"><strong>What it does:</strong> Breaks data into segments, sends them, and reassembles them on arrival. Decides between reliable (TCP) or fast (UDP) delivery.<br><br><strong>Examples:</strong> TCP for web browsing, UDP for gaming and video.</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 4</div><div class="box-body"><strong>SYN Flood:</strong> Thousands of half-completed TCP handshakes that exhaust server resources.<br><strong>Port Scanning:</strong> Mapping open ports to find exploitable services.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 4 — Transport</h3>
+        <p><strong>What it does:</strong> Breaks data into segments, sends them, and reassembles on arrival. Decides between reliable (TCP) or fast (UDP) delivery.</p>
+        <p><strong>Examples:</strong> TCP for web browsing, UDP for gaming and video.</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> SYN Flood (half-completed handshakes exhausting server resources), Port Scanning to map exploitable services.</p>
+      </div>
 
-      <div class="wu-box"><div class="box-label">Layer 3 — Network</div><div class="box-body"><strong>What it does:</strong> Routes data between networks using IP addresses.<br><br><strong>Examples:</strong> IP addresses, routers, ICMP (ping).</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 3</div><div class="box-body"><strong>IP Spoofing:</strong> Faking a source IP to appear as a trusted host.<br><strong>ICMP Flood:</strong> Overwhelming a target with ping requests.<br><strong>Man-in-the-Middle:</strong> Redirecting traffic through an attacker's machine.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 3 — Network</h3>
+        <p><strong>What it does:</strong> Routes data between networks using IP addresses.</p>
+        <p><strong>Examples:</strong> IP addresses, routers, ICMP (ping).</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> IP Spoofing, ICMP Flood, Man-in-the-Middle (redirecting traffic through an attacker's machine).</p>
+      </div>
 
-      <div class="wu-box"><div class="box-label">Layer 2 — Data Link</div><div class="box-body"><strong>What it does:</strong> Handles local network communication using MAC addresses.<br><br><strong>Examples:</strong> Ethernet, Wi-Fi, MAC addresses, switches.</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 2</div><div class="box-body"><strong>ARP Spoofing:</strong> Linking an attacker's MAC to a legitimate IP to intercept traffic.<br><strong>MAC Flooding:</strong> Overloading switch memory to broadcast all traffic to every port.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 2 — Data Link</h3>
+        <p><strong>What it does:</strong> Handles local network communication using MAC addresses.</p>
+        <p><strong>Examples:</strong> Ethernet, Wi-Fi, MAC addresses, switches.</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> ARP Spoofing (linking attacker's MAC to a legitimate IP), MAC Flooding (overloading switch memory).</p>
+      </div>
 
-      <div class="wu-box"><div class="box-label">Layer 1 — Physical</div><div class="box-body"><strong>What it does:</strong> The actual hardware — cables, radio signals, electrical impulses, fiber optics.<br><br><strong>Examples:</strong> Ethernet cables, Wi-Fi signals, fiber optic cables, network interface cards.</div></div>
-      <div class="wu-attack"><div class="box-label">Attacks at Layer 1</div><div class="box-body"><strong>Physical Tapping:</strong> Connecting a device directly to intercept data from cables.<br><strong>Signal Jamming:</strong> Radio interference disrupting wireless communications.<br><strong>Hardware Implants:</strong> Rogue USB or keyboard devices capturing keystrokes.</div></div>
+      <div class="wu-entry">
+        <h3>Layer 1 — Physical</h3>
+        <p><strong>What it does:</strong> The actual hardware — cables, radio signals, electrical impulses, fiber optics.</p>
+        <p><strong>Examples:</strong> Ethernet cables, Wi-Fi signals, fiber optic cables, network interface cards.</p>
+        <p class="wu-attacks"><strong>Common attacks:</strong> Physical Tapping, Signal Jamming, Hardware Implants (rogue USB or keyboard devices).</p>
+      </div>
 
       <h2>Why Defenders Need to Understand This</h2>
       <p>Every attack targets a specific layer. A firewall blocks threats at Layers 3 to 4. An IDS watches Layers 4 to 7. A WAF defends Layer 7. When you understand which layer is being attacked, you know which tool to reach for — and where to look in the logs.</p>
@@ -70,7 +98,6 @@
   </div>
 </main>
 
-<!-- ══ WRITE-UP NAV ══════════════════════════════════════════ -->
 <nav class="wu-page-nav" aria-label="Write-up navigation">
   <div class="wu-nav-inner">
     <div class="wu-nav-prev wu-nav-empty"></div>
