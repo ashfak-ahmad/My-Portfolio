@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="OSI layer attacks, defence-in-depth, troubleshooting methodology, and a SOC analyst's view — complete reference."/>
+  <meta name="description" content="OSI layer attacks, defence-in-depth, troubleshooting methodology, and a SOC analyst's view  complete reference."/>
   <meta name="author" content="Ashfak Ahmad"/>
-  <title>Attacks, Defence &amp; the SOC Analyst's View — OSI Model Part 3 — Ashfak Ahmad</title>
+  <title>Attacks, Defence &amp; the SOC Analyst's View.  OSI Model Part 3:  Ashfak Ahmad</title>
   <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body class="wup-body">
@@ -41,7 +41,7 @@
     <article class="wup-article">
 
       <h2>Attacks don't respect clean layer boundaries</h2>
-      <p>Real attackers don't open a textbook and decide to target "Layer 4 today." They pick an objective — steal credentials, stay persistent, disrupt a service — and move up and down the stack however they need to. A man-in-the-middle attack might start at Layer 2 with ARP spoofing, then exploit a Layer 6 weakness like an outdated TLS configuration to actually read the intercepted traffic. A phishing campaign starts at Layer 7, but the malware it delivers might then scan the network at Layer 3 and move laterally at Layer 2.</p>
+      <p>Real attackers don't open a textbook and decide to target "Layer 4 today." They pick an objective  steal credentials, stay persistent, disrupt a service  and move up and down the stack however they need to. A man-in-the-middle attack might start at Layer 2 with ARP spoofing, then exploit a Layer 6 weakness like an outdated TLS configuration to actually read the intercepted traffic. A phishing campaign starts at Layer 7, but the malware it delivers might then scan the network at Layer 3 and move laterally at Layer 2.</p>
       <p>That said, mapping any technique to its primary layer is still one of the fastest ways to orient yourself during an investigation. It narrows which logs to pull, which tools are relevant, and which team owns the response.</p>
 
       <h2>Complete attack reference</h2>
@@ -52,13 +52,13 @@
             <tr><th>Layer</th><th>Common attacks</th><th>Primary defences</th></tr>
           </thead>
           <tbody>
-            <tr><td>Layer 7 — Application</td><td>SQL Injection, XSS, CSRF, Directory Traversal, malicious API abuse</td><td>Input validation, parameterised queries, WAF, MFA, HTTPS, patching</td></tr>
-            <tr><td>Layer 6 — Presentation</td><td>SSL Stripping, Certificate Spoofing, Weak Cipher Exploitation</td><td>HSTS, modern TLS configuration, valid certificates, disable legacy versions</td></tr>
-            <tr><td>Layer 5 — Session</td><td>Session Hijacking, Session Fixation, Session Replay, CSRF</td><td>Regenerate session IDs on login, timeouts, Secure/HttpOnly/SameSite cookies</td></tr>
-            <tr><td>Layer 4 — Transport</td><td>SYN Flood, Port Scanning, UDP Flood, TCP Reset attacks</td><td>SYN cookies, rate limiting, stateful firewalls, IDS/IPS</td></tr>
-            <tr><td>Layer 3 — Network</td><td>IP Spoofing, BGP Hijacking, ICMP Floods, ping sweeps</td><td>Ingress/egress filtering, uRPF, RPKI, ICMP rate limiting</td></tr>
-            <tr><td>Layer 2 — Data Link</td><td>ARP Spoofing, MAC Flooding, VLAN Hopping, MAC Spoofing</td><td>Dynamic ARP Inspection, port security, 802.1X</td></tr>
-            <tr><td>Layer 1 — Physical</td><td>Wiretapping, cable tampering, rogue access points, signal jamming</td><td>Physical access controls, WIDS, disable unused ports, tamper-evident cabling</td></tr>
+            <tr><td>Layer 7  Application</td><td>SQL Injection, XSS, CSRF, Directory Traversal, malicious API abuse</td><td>Input validation, parameterised queries, WAF, MFA, HTTPS, patching</td></tr>
+            <tr><td>Layer 6  Presentation</td><td>SSL Stripping, Certificate Spoofing, Weak Cipher Exploitation</td><td>HSTS, modern TLS configuration, valid certificates, disable legacy versions</td></tr>
+            <tr><td>Layer 5  Session</td><td>Session Hijacking, Session Fixation, Session Replay, CSRF</td><td>Regenerate session IDs on login, timeouts, Secure/HttpOnly/SameSite cookies</td></tr>
+            <tr><td>Layer 4  Transport</td><td>SYN Flood, Port Scanning, UDP Flood, TCP Reset attacks</td><td>SYN cookies, rate limiting, stateful firewalls, IDS/IPS</td></tr>
+            <tr><td>Layer 3  Network</td><td>IP Spoofing, BGP Hijacking, ICMP Floods, ping sweeps</td><td>Ingress/egress filtering, uRPF, RPKI, ICMP rate limiting</td></tr>
+            <tr><td>Layer 2  Data Link</td><td>ARP Spoofing, MAC Flooding, VLAN Hopping, MAC Spoofing</td><td>Dynamic ARP Inspection, port security, 802.1X</td></tr>
+            <tr><td>Layer 1  Physical</td><td>Wiretapping, cable tampering, rogue access points, signal jamming</td><td>Physical access controls, WIDS, disable unused ports, tamper-evident cabling</td></tr>
           </tbody>
         </table>
       </div>
@@ -67,20 +67,20 @@
 
       <div class="wu-entry">
         <h3>Man-in-the-Middle</h3>
-        <p>Typically starts at Layer 2 — ARP spoofing repositions the attacker on the traffic path so packets flow through them. But being in the middle is only useful if the attacker can actually read the traffic, which requires exploiting a Layer 6 weakness: either SSL stripping to downgrade HTTPS to plain HTTP, or getting the victim to accept a fraudulent certificate. The attack crosses two layers to work.</p>
+        <p>Typically starts at Layer 2  ARP spoofing repositions the attacker on the traffic path so packets flow through them. But being in the middle is only useful if the attacker can actually read the traffic, which requires exploiting a Layer 6 weakness: either SSL stripping to downgrade HTTPS to plain HTTP, or getting the victim to accept a fraudulent certificate. The attack crosses two layers to work.</p>
       </div>
 
       <div class="wu-entry">
         <h3>DDoS</h3>
-        <p>Modern DDoS campaigns often hit multiple layers simultaneously. Volumetric floods at Layer 3/4 overwhelm bandwidth and connection state. Application-layer floods at Layer 7 target specific web endpoints with legitimate-looking requests that consume backend resources rather than raw bandwidth — much harder to filter because the traffic looks real. Effective mitigation requires visibility at every layer, not just one.</p>
+        <p>Modern DDoS campaigns often hit multiple layers simultaneously. Volumetric floods at Layer 3/4 overwhelm bandwidth and connection state. Application-layer floods at Layer 7 target specific web endpoints with legitimate-looking requests that consume backend resources rather than raw bandwidth  much harder to filter because the traffic looks real. Effective mitigation requires visibility at every layer, not just one.</p>
       </div>
 
       <div class="wu-entry">
         <h3>Malware command-and-control</h3>
-        <p>A piece of malware delivered via a phishing email (Layer 7) will almost always communicate outbound using Layer 7 protocols — HTTPS is popular because it blends into normal traffic and is encrypted. Detection depends on Application Layer inspection: TLS metadata analysis, DNS query patterns, and HTTP behaviour rather than any lower-layer signature. The initial compromise and the ongoing communication both live at the top of the stack.</p>
+        <p>A piece of malware delivered via a phishing email (Layer 7) will almost always communicate outbound using Layer 7 protocols  HTTPS is popular because it blends into normal traffic and is encrypted. Detection depends on Application Layer inspection: TLS metadata analysis, DNS query patterns, and HTTP behaviour rather than any lower-layer signature. The initial compromise and the ongoing communication both live at the top of the stack.</p>
       </div>
 
-      <h2>Defence in depth — what it actually means</h2>
+      <h2>Defence in depth  what it actually means</h2>
       <p>No single layer's controls are sufficient on their own. A perfectly tuned firewall at Layer 3/4 won't stop a SQL injection at Layer 7. A WAF covering Layer 7 won't stop someone tapping a cable in an unlocked server room. The argument for defence in depth is straightforward: stack independent controls at multiple layers so that a failure at one doesn't result in a full compromise.</p>
 
       <div class="wu-table-wrap">
@@ -105,9 +105,9 @@
 
       <div class="wu-entry">
         <h3>Three approaches</h3>
-        <p><strong>Bottom-up</strong> — start at Layer 1 (is the cable plugged in?) and work upward. Thorough but slow if the problem is clearly higher up.</p>
-        <p><strong>Top-down</strong> — start at Layer 7 and work downward. Efficient when the symptom is specific to one application.</p>
-        <p><strong>Divide-and-conquer</strong> — start in the middle, typically at Layer 3 or 4, and branch based on what you find. Most experienced engineers default to this because it isolates problems fastest.</p>
+        <p><strong>Bottom-up</strong>  start at Layer 1 (is the cable plugged in?) and work upward. Thorough but slow if the problem is clearly higher up.</p>
+        <p><strong>Top-down</strong>  start at Layer 7 and work downward. Efficient when the symptom is specific to one application.</p>
+        <p><strong>Divide-and-conquer</strong>  start in the middle, typically at Layer 3 or 4, and branch based on what you find. Most experienced engineers default to this because it isolates problems fastest.</p>
       </div>
 
       <div class="wu-entry">
@@ -118,13 +118,13 @@
               <tr><th>Layer</th><th>Useful tools</th></tr>
             </thead>
             <tbody>
-              <tr><td>Layer 7 — Application</td><td>Browser dev tools, application logs, curl, Burp Suite</td></tr>
-              <tr><td>Layer 6 — Presentation</td><td>openssl s_client, browser certificate viewer, Wireshark (TLS inspection)</td></tr>
-              <tr><td>Layer 5 — Session</td><td>Application/session logs, load balancer logs, identity provider logs</td></tr>
-              <tr><td>Layer 4 — Transport</td><td>netstat, ss, Wireshark (TCP flags), Nmap</td></tr>
-              <tr><td>Layer 3 — Network</td><td>ping, traceroute / tracert, ip route</td></tr>
-              <tr><td>Layer 2 — Data Link</td><td>arp -a, switch MAC address tables, cable testers</td></tr>
-              <tr><td>Layer 1 — Physical</td><td>Link lights, cable testers, physical inspection</td></tr>
+              <tr><td>Layer 7  Application</td><td>Browser dev tools, application logs, curl, Burp Suite</td></tr>
+              <tr><td>Layer 6  Presentation</td><td>openssl s_client, browser certificate viewer, Wireshark (TLS inspection)</td></tr>
+              <tr><td>Layer 5  Session</td><td>Application/session logs, load balancer logs, identity provider logs</td></tr>
+              <tr><td>Layer 4  Transport</td><td>netstat, ss, Wireshark (TCP flags), Nmap</td></tr>
+              <tr><td>Layer 3  Network</td><td>ping, traceroute / tracert, ip route</td></tr>
+              <tr><td>Layer 2  Data Link</td><td>arp -a, switch MAC address tables, cable testers</td></tr>
+              <tr><td>Layer 1  Physical</td><td>Link lights, cable testers, physical inspection</td></tr>
             </tbody>
           </table>
         </div>
@@ -134,11 +134,11 @@
         <h3>Walkthrough: "the website is down"</h3>
         <p>Using divide-and-conquer on one of the most common complaints in IT:</p>
         <p><strong>Can the user reach other sites?</strong> If yes, the problem is specific to this service, not the local network or internet connection. This immediately rules out Layers 1–3 on the user's side.</p>
-        <p><strong>Does DNS resolve the domain?</strong> Run nslookup or dig. If it returns the wrong IP, the problem is DNS — a Layer 7 protocol with infrastructure-level impact.</p>
-        <p><strong>Can you ping the server's IP?</strong> If not, the problem is at Layer 3 or below — routing, firewalls, or the server itself being down.</p>
-        <p><strong>Does the relevant port respond?</strong> If ping works but port 443 doesn't, the problem is at Layer 4 — a firewall is blocking it, or the web service isn't running.</p>
-        <p><strong>Does the TLS handshake complete?</strong> If the port responds but HTTPS fails, check for an expired or misconfigured certificate — Layer 6.</p>
-        <p><strong>Is the server returning an error?</strong> HTTP 500 or similar errors mean the network is fine but something is broken inside the application — Layer 7, and now an application team problem rather than a network team problem.</p>
+        <p><strong>Does DNS resolve the domain?</strong> Run nslookup or dig. If it returns the wrong IP, the problem is DNS  a Layer 7 protocol with infrastructure-level impact.</p>
+        <p><strong>Can you ping the server's IP?</strong> If not, the problem is at Layer 3 or below  routing, firewalls, or the server itself being down.</p>
+        <p><strong>Does the relevant port respond?</strong> If ping works but port 443 doesn't, the problem is at Layer 4  a firewall is blocking it, or the web service isn't running.</p>
+        <p><strong>Does the TLS handshake complete?</strong> If the port responds but HTTPS fails, check for an expired or misconfigured certificate  Layer 6.</p>
+        <p><strong>Is the server returning an error?</strong> HTTP 500 or similar errors mean the network is fine but something is broken inside the application  Layer 7, and now an application team problem rather than a network team problem.</p>
         <p>By the end of this process you know not just that something is broken, but exactly which team needs to fix it.</p>
       </div>
 
@@ -157,8 +157,8 @@
               <tr><td><code>ip.addr == 192.168.1.10</code></td><td>All traffic to or from a specific IP</td></tr>
               <tr><td><code>tcp.port == 443</code></td><td>All HTTPS traffic</td></tr>
               <tr><td><code>dns</code></td><td>All DNS queries and responses</td></tr>
-              <tr><td><code>arp</code></td><td>All ARP traffic — useful for spotting spoofing</td></tr>
-              <tr><td><code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code></td><td>New TCP connection attempts — useful for spotting SYN floods</td></tr>
+              <tr><td><code>arp</code></td><td>All ARP traffic  useful for spotting spoofing</td></tr>
+              <tr><td><code>tcp.flags.syn == 1 && tcp.flags.ack == 0</code></td><td>New TCP connection attempts  useful for spotting SYN floods</td></tr>
               <tr><td><code>tls.handshake.type == 1</code></td><td>TLS ClientHello messages</td></tr>
               <tr><td><code>http.response.code == 500</code></td><td>Server-side application errors</td></tr>
             </tbody>
@@ -176,26 +176,26 @@
             <tr><th>Layer</th><th>Typical SOC data sources</th></tr>
           </thead>
           <tbody>
-            <tr><td>Layer 7 — Application</td><td>WAF logs, application logs, EDR/antivirus alerts, email security gateway</td></tr>
-            <tr><td>Layer 6 — Presentation</td><td>Certificate monitoring, TLS inspection proxies</td></tr>
-            <tr><td>Layer 5 — Session</td><td>Identity provider logs, session and token audit logs</td></tr>
-            <tr><td>Layer 4 — Transport</td><td>Firewall logs, NetFlow/sFlow data, IDS/IPS alerts</td></tr>
-            <tr><td>Layer 3 — Network</td><td>Router and firewall logs, BGP monitoring, DDoS mitigation dashboards</td></tr>
-            <tr><td>Layer 2 — Data Link</td><td>Switch logs, wireless controller logs, NAC systems</td></tr>
-            <tr><td>Layer 1 — Physical</td><td>Badge access logs, CCTV, facilities and physical security systems</td></tr>
+            <tr><td>Layer 7  Application</td><td>WAF logs, application logs, EDR/antivirus alerts, email security gateway</td></tr>
+            <tr><td>Layer 6  Presentation</td><td>Certificate monitoring, TLS inspection proxies</td></tr>
+            <tr><td>Layer 5  Session</td><td>Identity provider logs, session and token audit logs</td></tr>
+            <tr><td>Layer 4  Transport</td><td>Firewall logs, NetFlow/sFlow data, IDS/IPS alerts</td></tr>
+            <tr><td>Layer 3  Network</td><td>Router and firewall logs, BGP monitoring, DDoS mitigation dashboards</td></tr>
+            <tr><td>Layer 2  Data Link</td><td>Switch logs, wireless controller logs, NAC systems</td></tr>
+            <tr><td>Layer 1  Physical</td><td>Badge access logs, CCTV, facilities and physical security systems</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="wu-entry">
         <h3>Multi-layer incident walkthrough</h3>
-        <p><strong>Scenario:</strong> an alert fires — a workstation is communicating with a known malicious domain.</p>
+        <p><strong>Scenario:</strong> an alert fires  a workstation is communicating with a known malicious domain.</p>
         <p><strong>Step 1 (Layer 7):</strong> DNS and proxy logs confirm the query and show what, if anything, was downloaded or sent outbound.</p>
         <p><strong>Step 2 (Layer 7):</strong> email security logs show the user received a phishing email with a malicious attachment shortly before the alert. Delivery method confirmed.</p>
-        <p><strong>Step 3 (Layer 5):</strong> identity provider logs are checked for concurrent sessions or unusual authentication attempts from the compromised account — in case credentials were also harvested.</p>
-        <p><strong>Step 4 (Layers 3–4):</strong> firewall and NetFlow logs confirm the outbound connection's destination IP, port, and data volume — determining whether exfiltration occurred.</p>
-        <p><strong>Step 5 (Layers 2–3):</strong> switch and internal firewall logs are reviewed for lateral movement — did the compromised workstation attempt to reach other internal systems?</p>
-        <p><strong>Step 6 — Containment:</strong> with a layered picture now in hand, the analyst isolates the workstation at Layer 2/3, disables the compromised account at Layer 5/7, and blocks the malicious domain and IP at Layer 3/7. A coordinated response built on evidence gathered across the whole stack.</p>
+        <p><strong>Step 3 (Layer 5):</strong> identity provider logs are checked for concurrent sessions or unusual authentication attempts from the compromised account  in case credentials were also harvested.</p>
+        <p><strong>Step 4 (Layers 3–4):</strong> firewall and NetFlow logs confirm the outbound connection's destination IP, port, and data volume  determining whether exfiltration occurred.</p>
+        <p><strong>Step 5 (Layers 2–3):</strong> switch and internal firewall logs are reviewed for lateral movement  did the compromised workstation attempt to reach other internal systems?</p>
+        <p><strong>Step 6  Containment:</strong> with a layered picture now in hand, the analyst isolates the workstation at Layer 2/3, disables the compromised account at Layer 5/7, and blocks the malicious domain and IP at Layer 3/7. A coordinated response built on evidence gathered across the whole stack.</p>
       </div>
 
       <h2>Quick-reference cheat sheet</h2>
@@ -223,13 +223,13 @@
             <tr><th>Attack</th><th>Layer</th></tr>
           </thead>
           <tbody>
-            <tr><td>SQL Injection, XSS, CSRF</td><td>Layer 7 — Application</td></tr>
-            <tr><td>SSL Stripping, Certificate Spoofing</td><td>Layer 6 — Presentation</td></tr>
-            <tr><td>Session Hijacking, Session Fixation</td><td>Layer 5 — Session</td></tr>
-            <tr><td>SYN Flood, Port Scanning, UDP Flood</td><td>Layer 4 — Transport</td></tr>
-            <tr><td>IP Spoofing, BGP Hijacking, ICMP Floods</td><td>Layer 3 — Network</td></tr>
-            <tr><td>ARP Spoofing, MAC Flooding, VLAN Hopping</td><td>Layer 2 — Data Link</td></tr>
-            <tr><td>Wiretapping, Signal Jamming, Rogue Access Points</td><td>Layer 1 — Physical</td></tr>
+            <tr><td>SQL Injection, XSS, CSRF</td><td>Layer 7  Application</td></tr>
+            <tr><td>SSL Stripping, Certificate Spoofing</td><td>Layer 6  Presentation</td></tr>
+            <tr><td>Session Hijacking, Session Fixation</td><td>Layer 5  Session</td></tr>
+            <tr><td>SYN Flood, Port Scanning, UDP Flood</td><td>Layer 4  Transport</td></tr>
+            <tr><td>IP Spoofing, BGP Hijacking, ICMP Floods</td><td>Layer 3  Network</td></tr>
+            <tr><td>ARP Spoofing, MAC Flooding, VLAN Hopping</td><td>Layer 2  Data Link</td></tr>
+            <tr><td>Wiretapping, Signal Jamming, Rogue Access Points</td><td>Layer 1  Physical</td></tr>
           </tbody>
         </table>
       </div>
@@ -238,7 +238,7 @@
 
       <div class="wu-entry">
         <h3>How does a firewall's function change depending on which layer it operates at?</h3>
-        <p>A traditional Layer 3/4 firewall filters by IP address, port number, and connection state. It has no idea what the traffic actually says. A Web Application Firewall at Layer 7 inspects the content of HTTP requests and can catch things like SQL injection or XSS that a lower-layer firewall would pass straight through. Both are necessary — they protect different things.</p>
+        <p>A traditional Layer 3/4 firewall filters by IP address, port number, and connection state. It has no idea what the traffic actually says. A Web Application Firewall at Layer 7 inspects the content of HTTP requests and can catch things like SQL injection or XSS that a lower-layer firewall would pass straight through. Both are necessary  they protect different things.</p>
       </div>
 
       <div class="wu-entry">
@@ -263,12 +263,12 @@
 <nav class="wu-page-nav" aria-label="Write-up navigation">
   <div class="wu-nav-inner">
     <a class="wu-nav-btn wu-nav-prev" href="osi-model-journey.html">
-      <span class="wu-nav-label">Back — Part 2 of 3</span>
+      <span class="wu-nav-label">Back  Part 2 of 3</span>
       <span class="wu-nav-title"><span class="wu-nav-arrow">←</span> A Packet's Journey: From Your Keyboard to the Server</span>
     </a>
     <a class="wu-nav-btn wu-nav-next" href="pentest-tools.html">
       <span class="wu-nav-label">Next Write-Up</span>
-      <span class="wu-nav-title">Best Penetration Testing Tools — A Practical Breakdown <span class="wu-nav-arrow">→</span></span>
+      <span class="wu-nav-title">Best Penetration Testing Tools  A Practical Breakdown <span class="wu-nav-arrow">→</span></span>
     </a>
   </div>
 </nav>
