@@ -1,277 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="How to identify and analyse a phishing email — a complete guide covering headers, SPF/DKIM/DMARC, attachments, and the SOC analyst workflow."/>
-  <meta name="author" content="Ashfak Ahmad"/>
-  <title>How to Identify a Phishing Email — Ashfak Ahmad</title>
-  <link rel="stylesheet" href="../assets/css/style.css"/>
+ <meta charset="UTF-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+ <meta name="description" content="How to identify and analyse a phishing email, a complete guide covering headers, SPF/DKIM/DMARC, attachments, and the SOC analyst workflow."/>
+ <meta name="author" content="Ashfak Ahmad"/>
+ <title>How to Identify a Phishing Email - Ashfak Ahmad</title>
+ <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body class="wup-body">
 
 <nav id="navbar" aria-label="Primary navigation">
-  <div class="nav-inner">
-    <a class="nav-logo" href="../index.html" aria-label="Back to portfolio home">
-      <div class="nav-logo-icon">
-        <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 1L18 5.5V14.5L10 19L2 14.5V5.5L10 1Z" stroke="#22c55e" stroke-width="1.5"/><circle cx="10" cy="10" r="3" fill="#22c55e"/></svg>
-      </div>
-      <div class="nav-logo-name">Ashfak Ahmad<span>Cybersecurity Analyst</span></div>
-    </a>
-    <a class="nav-cta" href="../assets/resume/Ashfak_Ahmad_Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
-  </div>
+ <div class="nav-inner">
+ <a class="nav-logo" href="../index.html" aria-label="Back to portfolio home">
+ <div class="nav-logo-icon">
+ <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 1L18 5.5V14.5L10 19L2 14.5V5.5L10 1Z" stroke="#22c55e" stroke-width="1.5"/><circle cx="10" cy="10" r="3" fill="#22c55e"/></svg>
+ </div>
+ <div class="nav-logo-name">Ashfak Ahmad<span>Cybersecurity Analyst</span></div>
+ </a>
+ <a class="nav-cta" href="../assets/resume/Ashfak_Ahmad_Resume.pdf" target="_blank" rel="noopener noreferrer">View Resume</a>
+ </div>
 </nav>
 
 <header class="wup-hero">
-  <div class="container">
-    <a class="wup-back" href="../index.html#writeups">← Back to Write-Ups</a>
-    <div class="wup-eyebrow">Security Awareness · Email Analysis</div>
-    <h1 class="wup-title">How to Identify a Phishing Email — Complete Analysis Guide</h1>
-    <p class="wup-meta">By Ashfak Ahmad &nbsp;·&nbsp; 15 min read &nbsp;·&nbsp; Beginner to Intermediate</p>
-  </div>
+ <div class="container">
+ <a class="wup-back" href="../index.html#writeups">← Back to Write-Ups</a>
+ <div class="wup-eyebrow">Security Awareness · Email Analysis</div>
+ <h1 class="wup-title">How to Identify a Phishing Email: Complete Analysis Guide</h1>
+ <p class="wup-meta">By Ashfak Ahmad &nbsp;·&nbsp; 15 min read &nbsp;·&nbsp; Beginner to Intermediate</p>
+ </div>
 </header>
 
 <main class="wup-article-wrap">
-  <div class="container">
-    <article class="wup-article">
+ <div class="container">
+ <article class="wup-article">
 
-      <h2>Why email is still the #1 attack vector</h2>
-      <p>Email remains the most common entry point for cyberattacks. Most successful breaches start with a single message landing in someone's inbox. The attacker doesn't need to break through a firewall — they just need one person to click a link or open an attachment.</p>
-      <p>A phishing email is a fraudulent message designed to trick the recipient into doing something that benefits the attacker. That action could be entering login credentials on a fake site, downloading malware, opening a macro-enabled document, approving an MFA request, sending money, or simply replying with sensitive information. The organisations being impersonated are almost always ones people trust without thinking — banks, Microsoft, Google, Amazon, PayPal, HR departments, or a message that appears to come from the CEO.</p>
-      <p>This guide covers every component of an email and how a SOC analyst examines each one.</p>
+ <h2>Why email is still the #1 attack vector</h2>
+ <p>Email remains the most common entry point for cyberattacks. Most successful breaches start with a single message landing in someone's inbox. The attacker doesn't need to break through a firewall, they just need one person to click a link or open an attachment.</p>
+ <p>A phishing email is a fraudulent message designed to trick the recipient into doing something that benefits the attacker. That action could be entering login credentials on a fake site, downloading malware, opening a macro-enabled document, approving an MFA request, sending money, or simply replying with sensitive information. The organisations being impersonated are almost always ones people trust without thinking, banks, Microsoft, Google, Amazon, PayPal, HR departments, or a message that appears to come from the CEO.</p>
+ <p>This guide covers every component of an email and how a SOC analyst examines each one.</p>
 
-      <h2>Anatomy of an email</h2>
-      <p>Most people see the display name, subject line, and message body. That's exactly what attackers count on. A full analysis touches every part of the message.</p>
+ <h2>Anatomy of an email</h2>
+ <p>Most people see the display name, subject line, and message body. That's exactly what attackers count on. A full analysis touches every part of the message.</p>
 
-      <div class="wu-table-wrap">
-        <table class="wu-table">
-          <thead>
-            <tr><th>Component</th><th>What analysts look at</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Display name</td><td>Does it match the actual sending address?</td></tr>
-            <tr><td>Sender address</td><td>Real domain or a lookalike?</td></tr>
-            <tr><td>Reply-To</td><td>Does it differ from the From address?</td></tr>
-            <tr><td>Return-Path</td><td>Where do bounces go — is it suspicious?</td></tr>
-            <tr><td>Subject line</td><td>Urgency, threats, reward, or unusual phrasing?</td></tr>
-            <tr><td>Received headers</td><td>What path did this email actually travel?</td></tr>
-            <tr><td>SPF / DKIM / DMARC</td><td>Did authentication pass or fail?</td></tr>
-            <tr><td>Message body</td><td>Grammar, tone, formatting, psychological pressure</td></tr>
-            <tr><td>Hyperlinks</td><td>Does the visible URL match the real destination?</td></tr>
-            <tr><td>Attachments</td><td>Extension, file type, macro-enabled?</td></tr>
-          </tbody>
-        </table>
-      </div>
+ <div class="wu-table-wrap">
+ <table class="wu-table">
+ <thead>
+ <tr><th>Component</th><th>What analysts look at</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Display name</td><td>Does it match the actual sending address?</td></tr>
+ <tr><td>Sender address</td><td>Real domain or a lookalike?</td></tr>
+ <tr><td>Reply-To</td><td>Does it differ from the From address?</td></tr>
+ <tr><td>Return-Path</td><td>Where do bounces go, is it suspicious?</td></tr>
+ <tr><td>Subject line</td><td>Urgency, threats, reward, or unusual phrasing?</td></tr>
+ <tr><td>Received headers</td><td>What path did this email actually travel?</td></tr>
+ <tr><td>SPF / DKIM / DMARC</td><td>Did authentication pass or fail?</td></tr>
+ <tr><td>Message body</td><td>Grammar, tone, formatting, psychological pressure</td></tr>
+ <tr><td>Hyperlinks</td><td>Does the visible URL match the real destination?</td></tr>
+ <tr><td>Attachments</td><td>Extension, file type, macro-enabled?</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-      <h2>1. Display name vs. sender address</h2>
-      <p>Most users only read the display name. Attackers know this. The name can say "Microsoft Support" while the actual sending address is something like <code>support@microsoft-verify-account.xyz</code>. Email clients often hide the raw address by default, which is why this trick works so reliably.</p>
-      <p>One of the subtler variants is typosquatting — registering a domain that looks nearly identical to a legitimate one. The letters <code>rn</code> side by side look almost exactly like <code>m</code>, so <code>rnicrosoft.com</code> can pass a quick glance.</p>
+ <h2>1. Display name vs. sender address</h2>
+ <p>Most users only read the display name. Attackers know this. The name can say "Microsoft Support" while the actual sending address is something like <code>support@microsoft-verify-account.xyz</code>. Email clients often hide the raw address by default, which is why this trick works so reliably.</p>
+ <p>One of the subtler variants is typosquatting, registering a domain that looks nearly identical to a legitimate one. The letters <code>rn</code> side by side look almost exactly like <code>m</code>, so <code>rnicrosoft.com</code> can pass a quick glance.</p>
 
-      <div class="wu-table-wrap">
-        <table class="wu-table">
-          <thead>
-            <tr><th>Legitimate domain</th><th>Fake equivalent</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>paypal.com</td><td>paypa1.com</td></tr>
-            <tr><td>microsoft.com</td><td>rnicrosoft.com</td></tr>
-            <tr><td>amazon.com</td><td>amaz0n.com</td></tr>
-            <tr><td>google.com</td><td>goog1e.com</td></tr>
-            <tr><td>apple.com</td><td>app1e.com</td></tr>
-          </tbody>
-        </table>
-      </div>
+ <div class="wu-table-wrap">
+ <table class="wu-table">
+ <thead>
+ <tr><th>Legitimate domain</th><th>Fake equivalent</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>paypal.com</td><td>paypa1.com</td></tr>
+ <tr><td>microsoft.com</td><td>rnicrosoft.com</td></tr>
+ <tr><td>amazon.com</td><td>amaz0n.com</td></tr>
+ <tr><td>google.com</td><td>goog1e.com</td></tr>
+ <tr><td>apple.com</td><td>app1e.com</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-      <p>Attackers also add words to the domain to make it look official: <code>paypal-security.com</code>, <code>secure-paypal.org</code>, <code>microsoftverify.com</code>. None of these belong to the real companies. Always check the actual domain, not the words around it.</p>
+ <p>Attackers also add words to the domain to make it look official: <code>paypal-security.com</code>, <code>secure-paypal.org</code>, <code>microsoftverify.com</code>. None of these belong to the real companies. Always check the actual domain, not the words around it.</p>
 
-      <h2>2. Subject line</h2>
-      <p>The subject line is designed to get you to open the email before thinking. Phishing subjects almost always trigger one of three emotions: fear, urgency, or curiosity. Common examples include "Your account will be closed", "URGENT: Invoice attached", "Suspicious login attempt detected", and "Package delivery failed — action required".</p>
-      <p>Legitimate organisations rarely demand action within minutes and don't phrase things to create panic. If the subject line made your heart rate go up slightly, that's intentional — slow down rather than speed up.</p>
+ <h2>2. Subject line</h2>
+ <p>The subject line is designed to get you to open the email before thinking. Phishing subjects almost always trigger one of three emotions: fear, urgency, or curiosity. Common examples include "Your account will be closed", "URGENT: Invoice attached", "Suspicious login attempt detected", and "Package delivery failed, action required".</p>
+ <p>Legitimate organisations rarely demand action within minutes and don't phrase things to create panic. If the subject line made your heart rate go up slightly, that's intentional, slow down rather than speed up.</p>
 
-      <h2>3. Greeting</h2>
-      <p>A company that has your account knows your name. Phishing emails use generic greetings like "Dear Customer", "Dear User", or "Hello Member" because the same message is being sent to millions of people simultaneously. A generic greeting isn't proof the email is malicious, but it's a flag worth noting alongside the other signals.</p>
+ <h2>3. Greeting</h2>
+ <p>A company that has your account knows your name. Phishing emails use generic greetings like "Dear Customer", "Dear User", or "Hello Member" because the same message is being sent to millions of people simultaneously. A generic greeting isn't proof the email is malicious, but it's a flag worth noting alongside the other signals.</p>
 
-      <h2>4. Message body</h2>
-      <p>Read the content carefully and look for inconsistencies. Grammar mistakes, spelling errors, awkward phrasing, mismatched fonts, random colour changes, broken images, and incorrect logos all suggest the email wasn't produced by a legitimate organisation's communications team. AI tools have made phishing emails more convincing in recent years, but inconsistencies still appear — especially in the formatting and in phrases that don't quite match how the impersonated company normally communicates.</p>
+ <h2>4. Message body</h2>
+ <p>Read the content carefully and look for inconsistencies. Grammar mistakes, spelling errors, awkward phrasing, mismatched fonts, random colour changes, broken images, and incorrect logos all suggest the email wasn't produced by a legitimate organisation's communications team. AI tools have made phishing emails more convincing in recent years, but inconsistencies still appear, especially in the formatting and in phrases that don't quite match how the impersonated company normally communicates.</p>
 
-      <h2>5. Psychological tactics</h2>
-      <p>Phishing works because it exploits predictable human responses. SOC analysts recognise these as social engineering techniques rather than coincidences.</p>
+ <h2>5. Psychological tactics</h2>
+ <p>Phishing works because it exploits predictable human responses. SOC analysts recognise these as social engineering techniques rather than coincidences.</p>
 
-      <div class="wu-table-wrap">
-        <table class="wu-table">
-          <thead>
-            <tr><th>Tactic</th><th>Example</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Fear</td><td>"Your account has been compromised."</td></tr>
-            <tr><td>Urgency</td><td>"Act within 30 minutes or your account will be closed."</td></tr>
-            <tr><td>Curiosity</td><td>"Someone mentioned you in this document."</td></tr>
-            <tr><td>Reward</td><td>"You've been selected for a free iPhone."</td></tr>
-            <tr><td>Authority</td><td>"Message from the CEO / HR Department / Government Notice"</td></tr>
-            <tr><td>Scarcity</td><td>"Limited time — offer expires today."</td></tr>
-          </tbody>
-        </table>
-      </div>
+ <div class="wu-table-wrap">
+ <table class="wu-table">
+ <thead>
+ <tr><th>Tactic</th><th>Example</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Fear</td><td>"Your account has been compromised."</td></tr>
+ <tr><td>Urgency</td><td>"Act within 30 minutes or your account will be closed."</td></tr>
+ <tr><td>Curiosity</td><td>"Someone mentioned you in this document."</td></tr>
+ <tr><td>Reward</td><td>"You've been selected for a free iPhone."</td></tr>
+ <tr><td>Authority</td><td>"Message from the CEO / HR Department / Government Notice"</td></tr>
+ <tr><td>Scarcity</td><td>"Limited time, offer expires today."</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-      <p>If an email is pushing you toward a fast decision, that pressure itself is a red flag. Real organisations give you time.</p>
+ <p>If an email is pushing you toward a fast decision, that pressure itself is a red flag. Real organisations give you time.</p>
 
-      <h2>6. Hyperlink analysis</h2>
-      <p>Never trust visible link text. An email can display <code>https://paypal.com</code> while the actual URL underneath points to <code>http://paypal-login-security.xyz</code>. Always hover over a link before clicking — your browser shows the real destination in the status bar.</p>
-      <p>Things to check in a URL: is the domain legitimate or a lookalike? Is it HTTP rather than HTTPS? Does it use an IP address directly instead of a domain name? Is it a URL shortener hiding the real destination? Does it use a long subdomain to bury the real domain at the end?</p>
-      <p>That last one is worth understanding clearly. In <code>paypal.com.fake-domain.com</code>, the actual domain is <code>fake-domain.com</code>. Everything before the last dot-separated domain is just a subdomain — the attacker has constructed it to look official at a glance.</p>
+ <h2>6. Hyperlink analysis</h2>
+ <p>Never trust visible link text. An email can display <code>https://paypal.com</code> while the actual URL underneath points to <code>http://paypal-login-security.xyz</code>. Always hover over a link before clicking, your browser shows the real destination in the status bar.</p>
+ <p>Things to check in a URL: is the domain legitimate or a lookalike? Is it HTTP rather than HTTPS? Does it use an IP address directly instead of a domain name? Is it a URL shortener hiding the real destination? Does it use a long subdomain to bury the real domain at the end?</p>
+ <p>That last one is worth understanding clearly. In <code>paypal.com.fake-domain.com</code>, the actual domain is <code>fake-domain.com</code>. Everything before the last dot-separated domain is just a subdomain, the attacker has constructed it to look official at a glance.</p>
 
-      <h2>7. Attachments</h2>
-      <p>Attachments are one of the most reliable malware delivery mechanisms because users are conditioned to open files. The extensions below should trigger immediate caution from anyone in a security role.</p>
+ <h2>7. Attachments</h2>
+ <p>Attachments are one of the most reliable malware delivery mechanisms because users are conditioned to open files. The extensions below should trigger immediate caution from anyone in a security role.</p>
 
-      <div class="wu-table-wrap">
-        <table class="wu-table">
-          <thead>
-            <tr><th>Category</th><th>Extensions to watch</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Executables</td><td>.exe, .scr, .bat, .cmd</td></tr>
-            <tr><td>Scripts</td><td>.js, .vbs, .ps1</td></tr>
-            <tr><td>Disk images</td><td>.iso, .img</td></tr>
-            <tr><td>Archives</td><td>.zip, .rar (may contain any of the above)</td></tr>
-            <tr><td>Macro-enabled Office files</td><td>.docm, .xlsm, .pptm — the "m" means macro-enabled; macros can execute arbitrary code</td></tr>
-            <tr><td>PDFs</td><td>Not inherently malicious, but can redirect to phishing sites, embed QR codes, contain malicious links, or exploit vulnerable readers</td></tr>
-          </tbody>
-        </table>
-      </div>
+ <div class="wu-table-wrap">
+ <table class="wu-table">
+ <thead>
+ <tr><th>Category</th><th>Extensions to watch</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>Executables</td><td>.exe, .scr, .bat, .cmd</td></tr>
+ <tr><td>Scripts</td><td>.js, .vbs, .ps1</td></tr>
+ <tr><td>Disk images</td><td>.iso, .img</td></tr>
+ <tr><td>Archives</td><td>.zip, .rar (may contain any of the above)</td></tr>
+ <tr><td>Macro-enabled Office files</td><td>.docm, .xlsm, .pptm, the "m" means macro-enabled; macros can execute arbitrary code</td></tr>
+ <tr><td>PDFs</td><td>Not inherently malicious, but can redirect to phishing sites, embed QR codes, contain malicious links, or exploit vulnerable readers</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-      <p>Never open a suspicious attachment locally. Use a sandbox tool to detonate it safely — more on that in the tools section below.</p>
+ <p>Never open a suspicious attachment locally. Use a sandbox tool to detonate it safely, more on that in the tools section below.</p>
 
-      <h2>8. QR code phishing (quishing)</h2>
-      <p>A growing tactic is replacing clickable links with QR codes. The user scans the code with their phone, which opens a phishing site on a device that typically has fewer security controls than a corporate laptop. The reason this works so well is that you can't hover over a QR code — there's no way to preview the destination before visiting it. If an email asks you to scan a QR code to "verify your account" or "complete a security check", treat it with the same suspicion as a bare link.</p>
+ <h2>8. QR code phishing (quishing)</h2>
+ <p>A growing tactic is replacing clickable links with QR codes. The user scans the code with their phone, which opens a phishing site on a device that typically has fewer security controls than a corporate laptop. The reason this works so well is that you can't hover over a QR code, there's no way to preview the destination before visiting it. If an email asks you to scan a QR code to "verify your account" or "complete a security check", treat it with the same suspicion as a bare link.</p>
 
-      <h2>9. Email header analysis</h2>
-      <p>Headers are hidden by default in most email clients, but they contain the most technically reliable information about where an email actually came from. Every mail server that handled the message adds a <code>Received:</code> line — and crucially, you read these from bottom to top. The bottom entry is where the email originated. Working upward shows the relay chain all the way to your inbox.</p>
+ <h2>9. Email header analysis</h2>
+ <p>Headers are hidden by default in most email clients, but they contain the most technically reliable information about where an email actually came from. Every mail server that handled the message adds a <code>Received:</code> line, and crucially, you read these from bottom to top. The bottom entry is where the email originated. Working upward shows the relay chain all the way to your inbox.</p>
 
-      <div class="wu-entry">
-        <h3>Return-Path</h3>
-        <p>The address that receives bounced emails. If the Return-Path domain doesn't match the From domain, that's a mismatch worth investigating. A legitimate PayPal email's Return-Path should be at a PayPal domain — if it points to <code>abc123@randomdomain.com</code>, something is wrong.</p>
-      </div>
+ <div class="wu-entry">
+ <h3>Return-Path</h3>
+ <p>The address that receives bounced emails. If the Return-Path domain doesn't match the From domain, that's a mismatch worth investigating. A legitimate PayPal email's Return-Path should be at a PayPal domain, if it points to <code>abc123@randomdomain.com</code>, something is wrong.</p>
+ </div>
 
-      <div class="wu-entry">
-        <h3>Reply-To</h3>
-        <p>If an attacker sends from a spoofed address but wants replies to land somewhere they control, they set a different Reply-To. Seeing <code>From: billing@company.com</code> alongside <code>Reply-To: support@gmail.com</code> is a significant red flag — legitimate company billing systems don't route replies to personal Gmail accounts.</p>
-      </div>
+ <div class="wu-entry">
+ <h3>Reply-To</h3>
+ <p>If an attacker sends from a spoofed address but wants replies to land somewhere they control, they set a different Reply-To. Seeing <code>From: billing@company.com</code> alongside <code>Reply-To: support@gmail.com</code> is a significant red flag, legitimate company billing systems don't route replies to personal Gmail accounts.</p>
+ </div>
 
-      <div class="wu-entry">
-        <h3>Message-ID</h3>
-        <p>Every email has a unique identifier generated by the sending mail server. Unusual or random-looking domains in the Message-ID can indicate suspicious sending infrastructure that doesn't match the claimed sender.</p>
-      </div>
+ <div class="wu-entry">
+ <h3>Message-ID</h3>
+ <p>Every email has a unique identifier generated by the sending mail server. Unusual or random-looking domains in the Message-ID can indicate suspicious sending infrastructure that doesn't match the claimed sender.</p>
+ </div>
 
-      <div class="wu-entry">
-        <h3>X-Originating-IP</h3>
-        <p>Some mail servers include the original sending IP address in this field. If an email claims to be from Microsoft but originated from a residential IP in an unexpected country, that's worth investigating further.</p>
-      </div>
+ <div class="wu-entry">
+ <h3>X-Originating-IP</h3>
+ <p>Some mail servers include the original sending IP address in this field. If an email claims to be from Microsoft but originated from a residential IP in an unexpected country, that's worth investigating further.</p>
+ </div>
 
-      <h2>10. Email authentication — SPF, DKIM, DMARC</h2>
-      <p>These three protocols form the technical backbone of email authentication. Together they answer: did this email actually come from who it claims to be from, and has it been tampered with in transit?</p>
+ <h2>10. Email authentication: SPF, DKIM, DMARC</h2>
+ <p>These three protocols form the technical backbone of email authentication. Together they answer: did this email actually come from who it claims to be from, and has it been tampered with in transit?</p>
 
-      <div class="wu-table-wrap">
-        <table class="wu-table">
-          <thead>
-            <tr><th>Protocol</th><th>Full name</th><th>What it checks</th><th>Results to know</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>SPF</td><td>Sender Policy Framework</td><td>Whether the sending mail server is authorised to send email for the domain — checked against a DNS record the domain owner publishes</td><td>PASS = authorised server. FAIL = possible spoofing.</td></tr>
-            <tr><td>DKIM</td><td>DomainKeys Identified Mail</td><td>Whether the email was modified after leaving the sending server — verified using a cryptographic signature</td><td>PASS = intact and signed. FAIL = tampered or unsigned. NONE = no signature present.</td></tr>
-            <tr><td>DMARC</td><td>Domain-based Message Authentication, Reporting &amp; Conformance</td><td>Combines SPF and DKIM results and tells receiving servers what to do if either fails — reject, quarantine, or allow</td><td>PASS = both checks align. FAIL = spoofing likely. REJECT/QUARANTINE = domain owner has set an enforcement policy.</td></tr>
-          </tbody>
-        </table>
-      </div>
+ <div class="wu-table-wrap">
+ <table class="wu-table">
+ <thead>
+ <tr><th>Protocol</th><th>Full name</th><th>What it checks</th><th>Results to know</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>SPF</td><td>Sender Policy Framework</td><td>Whether the sending mail server is authorised to send email for the domain, checked against a DNS record the domain owner publishes</td><td>PASS = authorised server. FAIL = possible spoofing.</td></tr>
+ <tr><td>DKIM</td><td>DomainKeys Identified Mail</td><td>Whether the email was modified after leaving the sending server, verified using a cryptographic signature</td><td>PASS = intact and signed. FAIL = tampered or unsigned. NONE = no signature present.</td></tr>
+ <tr><td>DMARC</td><td>Domain-based Message Authentication, Reporting &amp; Conformance</td><td>Combines SPF and DKIM results and tells receiving servers what to do if either fails, reject, quarantine, or allow</td><td>PASS = both checks align. FAIL = spoofing likely. REJECT/QUARANTINE = domain owner has set an enforcement policy.</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-      <p>A legitimate email from a well-configured domain will pass all three. A spoofed email will typically fail at least one. SPF FAIL or DMARC FAIL on an email claiming to be from a major organisation is a strong indicator of spoofing.</p>
+ <p>A legitimate email from a well-configured domain will pass all three. A spoofed email will typically fail at least one. SPF FAIL or DMARC FAIL on an email claiming to be from a major organisation is a strong indicator of spoofing.</p>
 
-      <h2>11. Domain and IP reputation</h2>
-      <p>Once you've extracted the sender's domain and originating IP address from the headers, check their reputation. Questions worth asking: when was the domain registered? A domain created yesterday claiming to be Microsoft is immediately suspicious. Is it listed on any blacklists? Has the IP address been reported for malicious activity? Does WHOIS show privacy protection masking the registrant identity? Does the domain have a real website, or does it resolve to nothing?</p>
-      <p>Brand new domains and IPs with abuse reports are two of the most reliable signals that something is off.</p>
+ <h2>11. Domain and IP reputation</h2>
+ <p>Once you've extracted the sender's domain and originating IP address from the headers, check their reputation. Questions worth asking: when was the domain registered? A domain created yesterday claiming to be Microsoft is immediately suspicious. Is it listed on any blacklists? Has the IP address been reported for malicious activity? Does WHOIS show privacy protection masking the registrant identity? Does the domain have a real website, or does it resolve to nothing?</p>
+ <p>Brand new domains and IPs with abuse reports are two of the most reliable signals that something is off.</p>
 
-      <h2>12. Business Email Compromise (BEC)</h2>
-      <p>Not every phishing email contains malware or a malicious link. Business Email Compromise is a category where the entire attack is social engineering — no technical payload required. A classic example is an email appearing to come from the CEO asking an employee to urgently purchase gift cards and send the redemption codes, or a fake vendor invoice redirecting payment to a new bank account.</p>
-      <p>These attacks are often harder to detect technically because the emails can pass all authentication checks (if the attacker has compromised the real account) and contain no suspicious URLs or attachments. The signal is in the request itself — unusual urgency, an out-of-character ask, pressure to bypass normal approval processes, or a request to keep things confidential.</p>
+ <h2>12. Business Email Compromise (BEC)</h2>
+ <p>Not every phishing email contains malware or a malicious link. Business Email Compromise is a category where the entire attack is social engineering, no technical payload required. A classic example is an email appearing to come from the CEO asking an employee to urgently purchase gift cards and send the redemption codes, or a fake vendor invoice redirecting payment to a new bank account.</p>
+ <p>These attacks are often harder to detect technically because the emails can pass all authentication checks (if the attacker has compromised the real account) and contain no suspicious URLs or attachments. The signal is in the request itself, unusual urgency, an out-of-character ask, pressure to bypass normal approval processes, or a request to keep things confidential.</p>
 
-      <h2>Safe analysis process</h2>
-      <p>When a suspicious email arrives — whether reported by a user or caught by a filter — this is the order to work through it.</p>
-      <ol>
-        <li>Don't click links or open attachments until the analysis is complete.</li>
-        <li>Verify the full sender address, not just the display name.</li>
-        <li>Check the Reply-To and Return-Path for mismatches with the From address.</li>
-        <li>Hover over every link to check the real destination URL.</li>
-        <li>Note any urgency, fear, authority, or reward pressure in the content.</li>
-        <li>Pull the full email headers and read the Received chain bottom to top.</li>
-        <li>Check SPF, DKIM, and DMARC authentication results.</li>
-        <li>Look up the sender domain's registration date and reputation.</li>
-        <li>Check the originating IP against abuse and blacklist databases.</li>
-        <li>Scan any URLs or attachments using sandbox tools — never open locally.</li>
-        <li>If still unsure, contact the claimed sender through an official channel that you find independently, not the details in the email.</li>
-        <li>Report to your security team so the threat can be blocked for other users.</li>
-      </ol>
+ <h2>Safe analysis process</h2>
+ <p>When a suspicious email arrives, whether reported by a user or caught by a filter, this is the order to work through it.</p>
+ <ol>
+ <li>Don't click links or open attachments until the analysis is complete.</li>
+ <li>Verify the full sender address, not just the display name.</li>
+ <li>Check the Reply-To and Return-Path for mismatches with the From address.</li>
+ <li>Hover over every link to check the real destination URL.</li>
+ <li>Note any urgency, fear, authority, or reward pressure in the content.</li>
+ <li>Pull the full email headers and read the Received chain bottom to top.</li>
+ <li>Check SPF, DKIM, and DMARC authentication results.</li>
+ <li>Look up the sender domain's registration date and reputation.</li>
+ <li>Check the originating IP against abuse and blacklist databases.</li>
+ <li>Scan any URLs or attachments using sandbox tools, never open locally.</li>
+ <li>If still unsure, contact the claimed sender through an official channel that you find independently, not the details in the email.</li>
+ <li>Report to your security team so the threat can be blocked for other users.</li>
+ </ol>
 
-      <h2>Analysis tools</h2>
+ <h2>Analysis tools</h2>
 
-      <div class="wu-table-wrap">
-        <table class="wu-table">
-          <thead>
-            <tr><th>Tool</th><th>Purpose</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>MXToolbox</td><td>Analyse email headers, DNS records, mail server configuration, and blacklist status</td></tr>
-            <tr><td>VirusTotal</td><td>Scan URLs, domains, IPs, and file hashes against dozens of security engines simultaneously</td></tr>
-            <tr><td>URLScan.io</td><td>Safely visit a URL in an isolated browser and see screenshots, redirects, scripts loaded, and network requests — without visiting it yourself</td></tr>
-            <tr><td>Any.Run</td><td>Interactive malware sandbox — watch what a file or URL actually does when executed in a controlled environment</td></tr>
-            <tr><td>Hybrid Analysis</td><td>Automated malware sandbox with behavioural analysis and IOC extraction</td></tr>
-            <tr><td>Cisco Talos Intelligence</td><td>Check the reputation of IPs, domains, and URLs using Cisco's threat intelligence database</td></tr>
-            <tr><td>AbuseIPDB</td><td>Community-reported IP abuse data — check whether an IP has been flagged for malicious activity</td></tr>
-            <tr><td>WHOIS Lookup</td><td>Domain registration details — creation date, registrar, expiry, and registrant information</td></tr>
-            <tr><td>Google Safe Browsing</td><td>Check whether a URL is flagged as a known phishing or malware site</td></tr>
-          </tbody>
-        </table>
-      </div>
+ <div class="wu-table-wrap">
+ <table class="wu-table">
+ <thead>
+ <tr><th>Tool</th><th>Purpose</th></tr>
+ </thead>
+ <tbody>
+ <tr><td>MXToolbox</td><td>Analyse email headers, DNS records, mail server configuration, and blacklist status</td></tr>
+ <tr><td>VirusTotal</td><td>Scan URLs, domains, IPs, and file hashes against dozens of security engines simultaneously</td></tr>
+ <tr><td>URLScan.io</td><td>Safely visit a URL in an isolated browser and see screenshots, redirects, scripts loaded, and network requests, without visiting it yourself</td></tr>
+ <tr><td>Any.Run</td><td>Interactive malware sandbox, watch what a file or URL actually does when executed in a controlled environment</td></tr>
+ <tr><td>Hybrid Analysis</td><td>Automated malware sandbox with behavioural analysis and IOC extraction</td></tr>
+ <tr><td>Cisco Talos Intelligence</td><td>Check the reputation of IPs, domains, and URLs using Cisco's threat intelligence database</td></tr>
+ <tr><td>AbuseIPDB</td><td>Community-reported IP abuse data, check whether an IP has been flagged for malicious activity</td></tr>
+ <tr><td>WHOIS Lookup</td><td>Domain registration details, creation date, registrar, expiry, and registrant information</td></tr>
+ <tr><td>Google Safe Browsing</td><td>Check whether a URL is flagged as a known phishing or malware site</td></tr>
+ </tbody>
+ </table>
+ </div>
 
-      <h2>SOC analyst workflow</h2>
-      <p>When a phishing email is escalated to a SOC team, the investigation follows a structured process rather than an ad-hoc inspection.</p>
-      <ol>
-        <li><strong>Preserve the email</strong> as evidence in its original form, including headers.</li>
-        <li><strong>Review all components</strong> — sender, subject, body, links, and attachments — before touching anything.</li>
-        <li><strong>Extract indicators of compromise (IOCs)</strong>: sender email address, domains, URLs, IP addresses, file names, and file hashes.</li>
-        <li><strong>Analyse headers</strong> to verify the sending path and authentication results.</li>
-        <li><strong>Run reputation checks</strong> on all extracted IOCs using threat intelligence platforms.</li>
-        <li><strong>Sandbox suspicious files and URLs</strong> to observe behaviour in a controlled environment.</li>
-        <li><strong>Determine scope</strong> — how many users received this email? Did anyone click or open anything?</li>
-        <li><strong>Contain</strong> by blocking malicious domains and IPs, quarantining the email from other inboxes, disabling compromised accounts, or isolating affected endpoints.</li>
-        <li><strong>Document</strong> the full investigation: findings, evidence collected, timeline, and response actions taken.</li>
-        <li><strong>Recommend improvements</strong> — updated email filter rules, stronger authentication enforcement, or targeted user awareness training.</li>
-      </ol>
+ <h2>SOC analyst workflow</h2>
+ <p>When a phishing email is escalated to a SOC team, the investigation follows a structured process rather than an ad-hoc inspection.</p>
+ <ol>
+ <li><strong>Preserve the email</strong> as evidence in its original form, including headers.</li>
+ <li><strong>Review all components</strong>, sender, subject, body, links, and attachments, before touching anything.</li>
+ <li><strong>Extract indicators of compromise (IOCs)</strong>: sender email address, domains, URLs, IP addresses, file names, and file hashes.</li>
+ <li><strong>Analyse headers</strong> to verify the sending path and authentication results.</li>
+ <li><strong>Run reputation checks</strong> on all extracted IOCs using threat intelligence platforms.</li>
+ <li><strong>Sandbox suspicious files and URLs</strong> to observe behaviour in a controlled environment.</li>
+ <li><strong>Determine scope</strong>, how many users received this email? Did anyone click or open anything?</li>
+ <li><strong>Contain</strong> by blocking malicious domains and IPs, quarantining the email from other inboxes, disabling compromised accounts, or isolating affected endpoints.</li>
+ <li><strong>Document</strong> the full investigation: findings, evidence collected, timeline, and response actions taken.</li>
+ <li><strong>Recommend improvements</strong>, updated email filter rules, stronger authentication enforcement, or targeted user awareness training.</li>
+ </ol>
 
-      <h2>Final takeaway</h2>
-      <p>Phishing detection is about looking past the surface. Attackers can replicate logos, copy email formatting, and write convincing prose — but the technical signals underneath are much harder to fake. SPF failures, domain mismatches, suspicious originating IPs, and Reply-To redirections expose the truth even when the visual presentation looks legitimate.</p>
-      <p>For anyone working toward a SOC role, email analysis is one of the first skills that gets tested in the real job. The workflow above reflects what actually happens when a phishing report lands in the queue — not just the surface-level check of "does the sender address look right", but the full technical investigation from headers to sandboxing to containment.</p>
+ <h2>Final takeaway</h2>
+ <p>Phishing detection is about looking past the surface. Attackers can replicate logos, copy email formatting, and write convincing prose, but the technical signals underneath are much harder to fake. SPF failures, domain mismatches, suspicious originating IPs, and Reply-To redirections expose the truth even when the visual presentation looks legitimate.</p>
+ 
 
-    </article>
-  </div>
+ </article>
+ </div>
 </main>
 
 <nav class="wu-page-nav" aria-label="Write-up navigation">
-  <div class="wu-nav-inner">
-    <a class="wu-nav-btn wu-nav-prev" href="pentest-tools.html">
-      <span class="wu-nav-label">Previous Write-Up</span>
-      <span class="wu-nav-title"><span class="wu-nav-arrow">←</span> Best Penetration Testing Tools — A Practical Breakdown</span>
-    </a>
-    <div class="wu-nav-next wu-nav-empty"></div>
-  </div>
+ <div class="wu-nav-inner">
+ <a class="wu-nav-btn wu-nav-prev" href="pentest-tools.html">
+ <span class="wu-nav-label">Previous Write-Up</span>
+ <span class="wu-nav-title"><span class="wu-nav-arrow">←</span> Best Penetration Testing Tools: A Practical Breakdown</span>
+ </a>
+ <div class="wu-nav-next wu-nav-empty"></div>
+ </div>
 </nav>
 
 <footer>
-  <div class="footer-inner">
-    <small class="footer-left">© 2025 <b>Ashfak Ahmad</b></small>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <a class="footer-link" href="../index.html">← Portfolio</a>
-      <a class="footer-link" href="../index.html#writeups">All Write-Ups</a>
-    </nav>
-  </div>
+ <div class="footer-inner">
+ <small class="footer-left">© 2025 <b>Ashfak Ahmad</b></small>
+ <nav class="footer-links" aria-label="Footer navigation">
+ <a class="footer-link" href="../index.html">← Portfolio</a>
+ <a class="footer-link" href="../index.html#writeups">All Write-Ups</a>
+ </nav>
+ </div>
 </footer>
 
 <script src="../assets/js/main.js"></script>
