@@ -1192,3 +1192,77 @@ small.footer-left {
   background: rgba(255,255,255,.06); padding: .1em .4em;
   border-radius: 3px; color: #94a3b8;
 }
+
+/* ═══════════════════════════════════════════════════════════
+   WRITEUP MOBILE RESPONSIVENESS
+═══════════════════════════════════════════════════════════ */
+
+/* Writeup hero */
+@media (max-width: 768px) {
+  .wup-hero { padding: 5rem 0 2rem; }
+  .wup-title { font-size: clamp(20px, 5vw, 28px); }
+  .wup-article-wrap { padding: 2rem 0 4rem; }
+  .wup-article { font-size: 14.5px; line-height: 1.9; }
+  .wup-article h2 { font-size: 10px; letter-spacing: 2px; margin: 2rem 0 .75rem; }
+  .wup-article h3 { font-size: 15px; margin: 1.5rem 0 .5rem; }
+}
+
+@media (max-width: 480px) {
+  .wup-hero { padding: 4.5rem 0 1.75rem; }
+  .wup-title { font-size: clamp(18px, 6vw, 24px); letter-spacing: -.02em; }
+  .wup-meta  { font-size: 10px; }
+  .wup-back  { font-size: 10px; padding: 5px 11px; }
+  .wup-article { font-size: 14px; }
+  .wup-article ul, .wup-article ol { margin-left: 1.1rem; }
+}
+
+/* Part navigation tabs */
+@media (max-width: 600px) {
+  .wup-parts { gap: .35rem; }
+  .wup-part  { font-size: 10px; padding: .3rem .6rem; }
+}
+
+/* Tables: horizontal scroll on small screens */
+.wu-table-wrap {
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+  .wu-table-wrap { border-radius: 6px; }
+  .wu-table th   { font-size: 10px; padding: .5rem .75rem; white-space: nowrap; }
+  .wu-table td   { font-size: 12.5px; padding: .5rem .75rem; }
+  .wu-table code { font-size: 11px; }
+}
+
+/* wu-entry blocks */
+@media (max-width: 480px) {
+  .wu-entry        { padding: 1rem 0; }
+  .wu-entry h3     { font-size: 14px; }
+  .wu-tag          { font-size: 9px; }
+  .wu-attacks      { font-size: 12.5px; }
+}
+
+/* Page nav (prev/next) */
+@media (max-width: 640px) {
+  .wu-nav-btn { padding: 1.25rem 1.25rem; }
+  .wu-nav-title { font-size: 12.5px; }
+}
+
+/* Container padding on very small screens */
+@media (max-width: 380px) {
+  .container { padding: 0 1rem; }
+  .wup-article { font-size: 13.5px; }
+  .wu-table td, .wu-table th { padding: .4rem .6rem; }
+}
+
+/* Prevent long code strings from breaking layout */
+.wu-table code, .wup-article code {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+/* Ordered list numbers on mobile */
+@media (max-width: 480px) {
+  .wup-article ol { margin-left: 1.25rem; }
+  .wup-article ol li { padding-left: .25rem; }
+}
