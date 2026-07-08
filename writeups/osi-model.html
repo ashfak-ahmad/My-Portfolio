@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="A breakdown of the OSI model — what each layer does, why it exists, and where attacks hide."/>
+  <meta name="description" content="A breakdown of the OSI model. what each layer does, why it exists, and where attacks hide."/>
   <meta name="author" content="Ashfak Ahmad"/>
-  <title>The OSI Model Explained — Ashfak Ahmad</title>
+  <title>The OSI Model Explained:  Ashfak Ahmad</title>
   <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body class="wup-body">
@@ -26,7 +26,7 @@
   <div class="container">
     <a class="wup-back" href="../index.html#writeups">← Back to Write-Ups</a>
     <div class="wup-eyebrow">Networking · Fundamentals</div>
-    <h1 class="wup-title">The OSI Model — What It Is, How It Works, and Where Attacks Hide</h1>
+    <h1 class="wup-title">The OSI Model. What It Is, How It Works, and Where Attacks Hide</h1>
     <p class="wup-meta">By Ashfak Ahmad &nbsp;·&nbsp; Part 1 of 3 &nbsp;·&nbsp; 10 min read &nbsp;·&nbsp; Beginner friendly</p>
     <div class="wup-parts">
       <span class="wup-part wup-part-active">Part 1: The Seven Layers</span>
@@ -41,7 +41,7 @@
     <article class="wup-article">
 
       <h2>Why networking needs standards</h2>
-      <p>In the early days of networking, each vendor built proprietary systems that couldn't talk to anyone else's. IBM's equipment spoke one language, DEC's another. If you bought hardware from two different companies, there was a real chance they simply wouldn't communicate. The International Organization for Standardization stepped in with a fix: in 1984 they published the Open Systems Interconnection model, a framework that breaks network communication into seven layers so that any two devices — anywhere in the world, from any manufacturer — can exchange data using the same rulebook.</p>
+      <p>In the early days of networking, each vendor built proprietary systems that couldn't talk to anyone else's. IBM's equipment spoke one language, DEC's another. If you bought hardware from two different companies, there was a real chance they simply wouldn't communicate. The International Organization for Standardization stepped in with a fix: in 1984 they published the Open Systems Interconnection model, a framework that breaks network communication into seven layers so that any two devices  anywhere in the world, from any manufacturer  can exchange data using the same rulebook.</p>
       <p>Today's internet runs on TCP/IP rather than OSI directly, but the model still shapes how engineers, analysts and developers think about networks. When something breaks, the OSI stack tells you where to look. When an attack happens, it tells you which tool can stop it.</p>
 
       <h2>The seven layers at a glance</h2>
@@ -53,13 +53,13 @@
             <tr><th>Layer</th><th>Name</th><th>Data unit</th><th>What it does</th></tr>
           </thead>
           <tbody>
-            <tr><td>7</td><td>Application</td><td>Data</td><td>User-facing services — HTTP, DNS, SMTP, SSH</td></tr>
+            <tr><td>7</td><td>Application</td><td>Data</td><td>User-facing services  HTTP, DNS, SMTP, SSH</td></tr>
             <tr><td>6</td><td>Presentation</td><td>Data</td><td>Encryption, compression, data format translation</td></tr>
             <tr><td>5</td><td>Session</td><td>Data</td><td>Opens, manages and closes conversations between apps</td></tr>
-            <tr><td>4</td><td>Transport</td><td>Segment / Datagram</td><td>End-to-end delivery — TCP for reliability, UDP for speed</td></tr>
+            <tr><td>4</td><td>Transport</td><td>Segment / Datagram</td><td>End-to-end delivery, TCP for reliability, UDP for speed</td></tr>
             <tr><td>3</td><td>Network</td><td>Packet</td><td>Routing between networks using IP addresses</td></tr>
             <tr><td>2</td><td>Data Link</td><td>Frame</td><td>Local delivery within a network using MAC addresses</td></tr>
-            <tr><td>1</td><td>Physical</td><td>Bit</td><td>Raw signals — copper, fibre, radio waves</td></tr>
+            <tr><td>1</td><td>Physical</td><td>Bit</td><td>Raw signals, copper, fibre, radio waves</td></tr>
           </tbody>
         </table>
       </div>
@@ -75,19 +75,19 @@
             <tr><th>Security event</th><th>Primary layer</th></tr>
           </thead>
           <tbody>
-            <tr><td>SQL Injection</td><td>Layer 7 — Application</td></tr>
-            <tr><td>Session Hijacking</td><td>Layer 5 — Session</td></tr>
-            <tr><td>SYN Flood</td><td>Layer 4 — Transport</td></tr>
-            <tr><td>IP Spoofing</td><td>Layer 3 — Network</td></tr>
-            <tr><td>ARP Spoofing</td><td>Layer 2 — Data Link</td></tr>
-            <tr><td>Cable Tampering</td><td>Layer 1 — Physical</td></tr>
+            <tr><td>SQL Injection</td><td>Layer 7  Application</td></tr>
+            <tr><td>Session Hijacking</td><td>Layer 5  Session</td></tr>
+            <tr><td>SYN Flood</td><td>Layer 4  Transport</td></tr>
+            <tr><td>IP Spoofing</td><td>Layer 3  Network</td></tr>
+            <tr><td>ARP Spoofing</td><td>Layer 2  Data Link</td></tr>
+            <tr><td>Cable Tampering</td><td>Layer 1  Physical</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h2>Layer 7 — Application</h2>
-      <p>This is the layer you actually interact with. Browsers, email clients, SSH terminals — they all live here. The Application Layer isn't the app itself; it's the set of protocols that give apps a way to talk over a network.</p>
-      <p>When you type a URL and press Enter, your browser creates an HTTP request at this layer and passes it down. It doesn't care about routing or cables — those are someone else's problem lower in the stack.</p>
+      <h2>Layer 7  Application</h2>
+      <p>This is the layer you actually interact with. Browsers, email clients, SSH terminals  they all live here. The Application Layer isn't the app itself; it's the set of protocols that give apps a way to talk over a network.</p>
+      <p>When you type a URL and press Enter, your browser creates an HTTP request at this layer and passes it down. It doesn't care about routing or cables  those are someone else's problem lower in the stack.</p>
 
       <div class="wu-table-wrap">
         <table class="wu-table">
@@ -109,35 +109,35 @@
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 7</h3>
-        <p><strong>SQL Injection</strong> — an attacker inserts SQL commands into a web form. If the app passes that input directly to the database without sanitising it, the attacker can read, modify or delete data they were never meant to touch.</p>
-        <p><strong>Cross-Site Scripting (XSS)</strong> — malicious JavaScript is injected into a page and then executed in other users' browsers, often to steal session cookies or redirect victims to phishing sites.</p>
-        <p><strong>CSRF</strong> — a logged-in user is tricked into submitting an action they didn't intend (like a bank transfer) because their browser automatically includes their session cookie with every request.</p>
+        <p><strong>SQL Injection</strong>  an attacker inserts SQL commands into a web form. If the app passes that input directly to the database without sanitising it, the attacker can read, modify or delete data they were never meant to touch.</p>
+        <p><strong>Cross-Site Scripting (XSS)</strong>  malicious JavaScript is injected into a page and then executed in other users' browsers, often to steal session cookies or redirect victims to phishing sites.</p>
+        <p><strong>CSRF</strong>  a logged-in user is tricked into submitting an action they didn't intend (like a bank transfer) because their browser automatically includes their session cookie with every request.</p>
         <p><strong>Defences:</strong> input validation, parameterised queries, Content Security Policy, WAFs, MFA, and keeping software patched.</p>
       </div>
 
-      <h2>Layer 6 — Presentation</h2>
+      <h2>Layer 6  Presentation</h2>
       <p>If the Application Layer is what you say, the Presentation Layer is the language you say it in. It handles three things: translating data into a format both sides understand (character encoding, file formats), compressing it to reduce size, and encrypting it so nobody in the middle can read it.</p>
       <p>In practice, TLS does most of the heavy lifting here. Before any application data flows, a TLS handshake negotiates the encryption algorithms, verifies the server's identity via its digital certificate, and derives session keys. From that point on, everything is encrypted.</p>
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 6</h3>
-        <p><strong>SSL Stripping</strong> — an attacker positioned between the user and the server downgrades the HTTPS connection to plain HTTP, making all traffic readable. HTTP Strict Transport Security (HSTS) is the main defence.</p>
-        <p><strong>Weak cipher exploitation</strong> — older algorithms like MD5 or RC4 can be cracked. Organisations should disable legacy TLS versions and only allow modern cipher suites.</p>
-        <p><strong>Certificate spoofing</strong> — a fraudulent certificate is presented to the client. Browsers catch most of these, but users who click through certificate warnings undo that protection entirely.</p>
+        <p><strong>SSL Stripping</strong>  an attacker positioned between the user and the server downgrades the HTTPS connection to plain HTTP, making all traffic readable. HTTP Strict Transport Security (HSTS) is the main defence.</p>
+        <p><strong>Weak cipher exploitation</strong>  older algorithms like MD5 or RC4 can be cracked. Organisations should disable legacy TLS versions and only allow modern cipher suites.</p>
+        <p><strong>Certificate spoofing</strong>  a fraudulent certificate is presented to the client. Browsers catch most of these, but users who click through certificate warnings undo that protection entirely.</p>
       </div>
 
-      <h2>Layer 5 — Session</h2>
+      <h2>Layer 5  Session</h2>
       <p>Sessions answer a simple question: once a connection is established, how does each side know the conversation is still ongoing? The Session Layer opens a dialogue, keeps it organised while data flows back and forth, and closes it cleanly when done.</p>
-      <p>The OSI Session Layer as originally defined doesn't appear as a distinct protocol in modern TCP/IP networks — its responsibilities get absorbed into the Application Layer through things like HTTP cookies, session tokens, and TLS session resumption. But the concept is important because sessions are high-value targets.</p>
+      <p>The OSI Session Layer as originally defined doesn't appear as a distinct protocol in modern TCP/IP networks  its responsibilities get absorbed into the Application Layer through things like HTTP cookies, session tokens, and TLS session resumption. But the concept is important because sessions are high-value targets.</p>
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 5</h3>
-        <p><strong>Session Hijacking</strong> — an attacker steals a valid session token, often via XSS or packet sniffing, and uses it to impersonate the legitimate user without needing their password.</p>
-        <p><strong>Session Fixation</strong> — the attacker forces a victim to use a session ID they already know. If the application doesn't issue a fresh session ID after login, the attacker can authenticate as the victim.</p>
+        <p><strong>Session Hijacking</strong>  an attacker steals a valid session token, often via XSS or packet sniffing, and uses it to impersonate the legitimate user without needing their password.</p>
+        <p><strong>Session Fixation</strong>  the attacker forces a victim to use a session ID they already know. If the application doesn't issue a fresh session ID after login, the attacker can authenticate as the victim.</p>
         <p><strong>Defences:</strong> regenerate session IDs on login, use short timeouts, mark cookies as Secure and HttpOnly, and always send session tokens over HTTPS.</p>
       </div>
 
-      <h2>Layer 4 — Transport</h2>
+      <h2>Layer 4  Transport</h2>
       <p>The Transport Layer decides two things for every conversation: how reliable does delivery need to be, and which application on each device is actually talking? It answers the first question by choosing between TCP and UDP, and the second using port numbers.</p>
 
       <div class="wu-table-wrap">
@@ -158,46 +158,46 @@
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 4</h3>
-        <p><strong>SYN Flood</strong> — an attacker sends thousands of SYN packets but never completes the handshake, leaving the server holding half-open connections until its resources run out. SYN cookies and rate limiting are the standard defences.</p>
-        <p><strong>Port Scanning</strong> — systematically probing ports to discover which services are running. Not an attack by itself, but a common first step in reconnaissance.</p>
-        <p><strong>UDP Flood</strong> — overwhelming a target with connectionless UDP traffic to exhaust bandwidth or processing capacity.</p>
+        <p><strong>SYN Flood</strong>  an attacker sends thousands of SYN packets but never completes the handshake, leaving the server holding half-open connections until its resources run out. SYN cookies and rate limiting are the standard defences.</p>
+        <p><strong>Port Scanning</strong>  systematically probing ports to discover which services are running. Not an attack by itself, but a common first step in reconnaissance.</p>
+        <p><strong>UDP Flood</strong>  overwhelming a target with connectionless UDP traffic to exhaust bandwidth or processing capacity.</p>
       </div>
 
-      <h2>Layer 3 — Network</h2>
-      <p>The Network Layer is responsible for getting a packet from your device to one on the other side of the planet. It does this through logical addressing (IP addresses) and routing — routers examine the destination IP, consult their routing tables, and forward the packet one hop closer to its destination. This repeats across every router along the path.</p>
+      <h2>Layer 3  Network</h2>
+      <p>The Network Layer is responsible for getting a packet from your device to one on the other side of the planet. It does this through logical addressing (IP addresses) and routing  routers examine the destination IP, consult their routing tables, and forward the packet one hop closer to its destination. This repeats across every router along the path.</p>
       <p>Each hop, the router strips the old Layer 2 frame, examines the Layer 3 packet, builds a new frame for the next link, and sends it on. The IP packet itself stays largely intact end-to-end, except for the TTL field which decrements by one at each hop to prevent packets looping forever.</p>
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 3</h3>
-        <p><strong>IP Spoofing</strong> — forging the source IP address to disguise the true origin of traffic, used to evade access controls or amplify denial-of-service attacks.</p>
-        <p><strong>BGP Hijacking</strong> — injecting false routing information so traffic destined for a legitimate network gets misdirected, potentially through the attacker's infrastructure.</p>
-        <p><strong>ICMP Floods</strong> — overwhelming a target with ping requests. Less common today but still seen in volumetric DDoS campaigns.</p>
+        <p><strong>IP Spoofing</strong>  forging the source IP address to disguise the true origin of traffic, used to evade access controls or amplify denial-of-service attacks.</p>
+        <p><strong>BGP Hijacking</strong>  injecting false routing information so traffic destined for a legitimate network gets misdirected, potentially through the attacker's infrastructure.</p>
+        <p><strong>ICMP Floods</strong>  overwhelming a target with ping requests. Less common today but still seen in volumetric DDoS campaigns.</p>
       </div>
 
-      <h2>Layer 2 — Data Link</h2>
-      <p>Before a packet can go anywhere — even to the router a few feet away — it needs to be wrapped in a frame and delivered across the local network segment. The Data Link Layer handles this using MAC addresses rather than IP addresses, because at this level we're only worried about the immediate next hop, not the final destination.</p>
+      <h2>Layer 2  Data Link</h2>
+      <p>Before a packet can go anywhere  even to the router a few feet away  it needs to be wrapped in a frame and delivered across the local network segment. The Data Link Layer handles this using MAC addresses rather than IP addresses, because at this level we're only worried about the immediate next hop, not the final destination.</p>
       <p>Switches operate here. When a frame arrives, the switch reads the destination MAC address, looks it up in its MAC address table, and forwards the frame only to the correct port. This is far more efficient than older hubs, which blindly repeated every signal out every port.</p>
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 2</h3>
-        <p><strong>ARP Spoofing</strong> — an attacker sends forged ARP replies associating their MAC address with the gateway's IP. Victims update their ARP cache and unknowingly route traffic through the attacker — a classic man-in-the-middle setup.</p>
-        <p><strong>MAC Flooding</strong> — flooding a switch with fake source MAC addresses to exhaust its address table. Some switches fail open when full, broadcasting all traffic to every port and letting the attacker sniff conversations they shouldn't see.</p>
-        <p><strong>VLAN Hopping</strong> — exploiting misconfigured trunk ports to send traffic across VLAN boundaries without going through a router.</p>
+        <p><strong>ARP Spoofing</strong>  an attacker sends forged ARP replies associating their MAC address with the gateway's IP. Victims update their ARP cache and unknowingly route traffic through the attacker  a classic man-in-the-middle setup.</p>
+        <p><strong>MAC Flooding</strong>  flooding a switch with fake source MAC addresses to exhaust its address table. Some switches fail open when full, broadcasting all traffic to every port and letting the attacker sniff conversations they shouldn't see.</p>
+        <p><strong>VLAN Hopping</strong>  exploiting misconfigured trunk ports to send traffic across VLAN boundaries without going through a router.</p>
       </div>
 
-      <h2>Layer 1 — Physical</h2>
-      <p>Every layer above this one is software. Layer 1 is where digital communication meets physical reality — copper cables carrying electrical pulses, fibre optic strands carrying light, or radio waves for wireless. The Physical Layer defines the connectors, voltage levels, frequencies and signal encoding that allow bits to actually move between devices.</p>
+      <h2>Layer 1  Physical</h2>
+      <p>Every layer above this one is software. Layer 1 is where digital communication meets physical reality  copper cables carrying electrical pulses, fibre optic strands carrying light, or radio waves for wireless. The Physical Layer defines the connectors, voltage levels, frequencies and signal encoding that allow bits to actually move between devices.</p>
 
       <div class="wu-entry">
         <h3>Common attacks at Layer 1</h3>
-        <p><strong>Wiretapping</strong> — physically tapping a cable to intercept the raw signal. Fibre is harder to tap than copper without introducing detectable signal loss.</p>
-        <p><strong>Rogue Access Points</strong> — an attacker connects an unauthorised wireless access point to the network, bypassing access controls, or sets up a fake access point to intercept nearby traffic.</p>
-        <p><strong>Signal Jamming</strong> — flooding a wireless frequency with noise to disrupt legitimate communication.</p>
+        <p><strong>Wiretapping</strong>  physically tapping a cable to intercept the raw signal. Fibre is harder to tap than copper without introducing detectable signal loss.</p>
+        <p><strong>Rogue Access Points</strong>  an attacker connects an unauthorised wireless access point to the network, bypassing access controls, or sets up a fake access point to intercept nearby traffic.</p>
+        <p><strong>Signal Jamming</strong>  flooding a wireless frequency with noise to disrupt legitimate communication.</p>
         <p><strong>Defences:</strong> locked wiring closets, tamper-evident cabling, 802.1X port authentication, wireless intrusion detection, and disabling unused switch ports.</p>
       </div>
 
       <h2>Putting it together</h2>
-      <p>A firewall filtering by IP address works at Layer 3. An intrusion detection system watching TCP behaviour works at Layer 4. A web application firewall inspecting HTTP requests works at Layer 7. None of these tools sees the full picture on its own — which is why security requires controls at every layer, not just one.</p>
+      <p>A firewall filtering by IP address works at Layer 3. An intrusion detection system watching TCP behaviour works at Layer 4. A web application firewall inspecting HTTP requests works at Layer 7. None of these tools sees the full picture on its own  which is why security requires controls at every layer, not just one.</p>
       <p>The next part of this write-up follows a real web request from your keyboard to a web server and back, showing each of these layers in action.</p>
 
     </article>
@@ -208,7 +208,7 @@
   <div class="wu-nav-inner">
     <div class="wu-nav-prev wu-nav-empty"></div>
     <a class="wu-nav-btn wu-nav-next" href="osi-model-journey.html">
-      <span class="wu-nav-label">Continue — Part 2 of 3</span>
+      <span class="wu-nav-label">Continue  Part 2 of 3</span>
       <span class="wu-nav-title">A Packet's Journey: From Your Keyboard to the Server <span class="wu-nav-arrow">→</span></span>
     </a>
   </div>
