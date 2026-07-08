@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Follow a single web request from your keyboard to Google's server — every OSI layer in action."/>
+  <meta name="description" content="Follow a single web request from your keyboard to Google's server  every OSI layer in action."/>
   <meta name="author" content="Ashfak Ahmad"/>
-  <title>A Packet's Journey — OSI Model Part 2 — Ashfak Ahmad</title>
+  <title>A Packet's Journey. OSI Model Part 2: Ashfak Ahmad</title>
   <link rel="stylesheet" href="../assets/css/style.css"/>
 </head>
 <body class="wup-body">
@@ -26,7 +26,7 @@
   <div class="container">
     <a class="wup-back" href="../index.html#writeups">← Back to Write-Ups</a>
     <div class="wup-eyebrow">Networking · Fundamentals</div>
-    <h1 class="wup-title">A Packet's Journey — From Your Keyboard to the Server and Back</h1>
+    <h1 class="wup-title">A Packet's Journey.  From Your Keyboard to the Server and Back</h1>
     <p class="wup-meta">By Ashfak Ahmad &nbsp;·&nbsp; Part 2 of 3 &nbsp;·&nbsp; 12 min read &nbsp;·&nbsp; Beginner friendly</p>
     <div class="wup-parts">
       <a class="wup-part" href="osi-model.html">Part 1: The Seven Layers</a>
@@ -41,25 +41,25 @@
     <article class="wup-article">
 
       <h2>What actually happens when you press Enter</h2>
-      <p>You type <code>https://www.google.com</code> into a browser and hit Enter. The page loads in under a second. That feels simple, but behind it sit thousands of operations spread across hardware, software, and half a dozen networking protocols — all of which map directly to the OSI layers covered in Part 1.</p>
+      <p>You type <code>https://www.google.com</code> into a browser and hit Enter. The page loads in under a second. That feels simple, but behind it sit thousands of operations spread across hardware, software, and half a dozen networking protocols  all of which map directly to the OSI layers covered in Part 1.</p>
       <p>This section follows that single request end-to-end. By the time you finish reading, the model stops being an abstract list of seven names and becomes something you can trace through an actual event.</p>
 
-      <h2>Step 1 — The browser builds a request (Layer 7)</h2>
-      <p>The browser is the first thing involved. When you press Enter, it creates an HTTP GET request — basically a formatted message asking Google's server to send back the homepage. At this point the request knows what it wants, but has no idea how to get there. That's everyone else's job.</p>
+      <h2>Step 1  The browser builds a request (Layer 7)</h2>
+      <p>The browser is the first thing involved. When you press Enter, it creates an HTTP GET request  basically a formatted message asking Google's server to send back the homepage. At this point the request knows what it wants, but has no idea how to get there. That's everyone else's job.</p>
 
-      <h2>Step 2 — DNS: finding the address (Layer 7)</h2>
-      <p>Computers communicate using IP addresses, not domain names. Before anything else can happen, the browser needs to turn <code>www.google.com</code> into a number. It checks its local cache first; if it finds the answer there, it skips the network request entirely. If not, it asks a DNS resolver — the internet's phone book — which replies with Google's current IP address.</p>
+      <h2>Step 2  DNS: finding the address (Layer 7)</h2>
+      <p>Computers communicate using IP addresses, not domain names. Before anything else can happen, the browser needs to turn <code>www.google.com</code> into a number. It checks its local cache first; if it finds the answer there, it skips the network request entirely. If not, it asks a DNS resolver  the internet's phone book  which replies with Google's current IP address.</p>
       <p>DNS is worth paying attention to from a security standpoint. It's one of the most abused protocols on the internet. DNS spoofing, cache poisoning, and DNS tunnelling all exploit the fact that most organisations trust DNS traffic implicitly and log it poorly. SOC teams that monitor DNS queries catch a surprising amount of malicious activity.</p>
 
-      <h2>Step 3 — Is the destination local or remote? (Layer 3)</h2>
-      <p>Your computer compares Google's IP address to its own network. They're clearly on different networks — your machine is probably something like <code>192.168.1.x</code> and Google's server is nowhere near that range. So your computer concludes: this packet needs to leave the local network. It will go to the default gateway — your router.</p>
+      <h2>Step 3  Is the destination local or remote? (Layer 3)</h2>
+      <p>Your computer compares Google's IP address to its own network. They're clearly on different networks  your machine is probably something like <code>192.168.1.x</code> and Google's server is nowhere near that range. So your computer concludes: this packet needs to leave the local network. It will go to the default gateway  your router.</p>
 
-      <h2>Step 4 — ARP: finding the router's MAC address (Layer 2)</h2>
+      <h2>Step 4  ARP: finding the router's MAC address (Layer 2)</h2>
       <p>Your computer knows the router's IP address, but Ethernet frames are addressed using MAC addresses, not IPs. So it broadcasts an ARP request to the local network: "Who has <code>192.168.1.1</code>? Tell me your MAC address." The router replies, your computer stores the mapping in its ARP cache, and now it knows exactly which physical device should receive the frame.</p>
       <p>This is the mechanism that ARP spoofing exploits. An attacker on the same local network can send a forged ARP reply claiming that their MAC address belongs to the router's IP. Your computer updates its cache and starts sending all outbound traffic through the attacker's machine instead.</p>
 
-      <h2>Step 5 — TCP handshake: establishing a reliable connection (Layer 4)</h2>
-      <p>Before any web content is exchanged, the browser establishes a TCP connection with Google's server. This takes three packets — a process called the three-way handshake.</p>
+      <h2>Step 5  TCP handshake: establishing a reliable connection (Layer 4)</h2>
+      <p>Before any web content is exchanged, the browser establishes a TCP connection with Google's server. This takes three packets  a process called the three-way handshake.</p>
 
       <div class="wu-table-wrap">
         <table class="wu-table">
@@ -74,14 +74,14 @@
         </table>
       </div>
 
-      <p>Only after this exchange does application data start flowing. The reason TCP goes through this ceremony is that the internet is unreliable — packets can be delayed, dropped, or arrive out of order. TCP tracks sequence numbers, sends acknowledgements, and retransmits anything that gets lost. It's the difference between reliable delivery and hoping for the best.</p>
+      <p>Only after this exchange does application data start flowing. The reason TCP goes through this ceremony is that the internet is unreliable  packets can be delayed, dropped, or arrive out of order. TCP tracks sequence numbers, sends acknowledgements, and retransmits anything that gets lost. It's the difference between reliable delivery and hoping for the best.</p>
 
-      <h2>Step 6 — TLS handshake: encrypting the connection (Layer 6)</h2>
+      <h2>Step 6  TLS handshake: encrypting the connection (Layer 6)</h2>
       <p>Because the URL begins with <code>https://</code>, the browser doesn't send the HTTP request yet. First it negotiates an encrypted channel using TLS. The two sides agree on the TLS version and cipher suites, the server presents its digital certificate (which the browser verifies against a trusted Certificate Authority), and they exchange enough information to derive the same symmetric encryption keys independently.</p>
-      <p>Modern HTTPS uses both types of encryption, each for what it's good at: asymmetric cryptography during the handshake to securely agree on keys, then fast symmetric encryption for the actual data transfer. Without TLS, anyone with access to the same network — or anywhere along the path — could read your traffic in plain text.</p>
+      <p>Modern HTTPS uses both types of encryption, each for what it's good at: asymmetric cryptography during the handshake to securely agree on keys, then fast symmetric encryption for the actual data transfer. Without TLS, anyone with access to the same network  or anywhere along the path  could read your traffic in plain text.</p>
 
-      <h2>Step 7 — Encapsulation: wrapping the data for travel</h2>
-      <p>The application data is now ready to send. As it moves down the networking stack, each layer wraps it in additional information — a process called encapsulation. The receiving side reverses this, unwrapping one layer at a time in a process called decapsulation.</p>
+      <h2>Step 7  Encapsulation: wrapping the data for travel</h2>
+      <p>The application data is now ready to send. As it moves down the networking stack, each layer wraps it in additional information  a process called encapsulation. The receiving side reverses this, unwrapping one layer at a time in a process called decapsulation.</p>
 
       <div class="wu-table-wrap">
         <table class="wu-table">
@@ -99,17 +99,17 @@
         </table>
       </div>
 
-      <p>A key thing to notice: each layer ignores what the others added. The router only reads the IP header. The switch only reads the MAC address. Neither one cares about the HTTP request buried inside. This separation of responsibilities is what makes the OSI Model work — and what makes encapsulation one of the most important concepts in all of networking.</p>
-      <p>The data unit also changes name at each layer, which trips up a lot of people when reading documentation. It's the same information — just described from the perspective of whichever layer is looking at it.</p>
+      <p>A key thing to notice: each layer ignores what the others added. The router only reads the IP header. The switch only reads the MAC address. Neither one cares about the HTTP request buried inside. This separation of responsibilities is what makes the OSI Model work  and what makes encapsulation one of the most important concepts in all of networking.</p>
+      <p>The data unit also changes name at each layer, which trips up a lot of people when reading documentation. It's the same information  just described from the perspective of whichever layer is looking at it.</p>
 
-      <h2>Step 8 — Bits travel the physical medium (Layer 1)</h2>
-      <p>The completed frame reaches your network interface card. The NIC converts it into physical signals — electrical pulses on an Ethernet cable, light pulses through fibre, or radio waves over Wi-Fi. From this point, your data exists as a stream of ones and zeroes moving through the physical world.</p>
+      <h2>Step 8  Bits travel the physical medium (Layer 1)</h2>
+      <p>The completed frame reaches your network interface card. The NIC converts it into physical signals  electrical pulses on an Ethernet cable, light pulses through fibre, or radio waves over Wi-Fi. From this point, your data exists as a stream of ones and zeroes moving through the physical world.</p>
 
-      <h2>Step 9 — Routers forward the packet across the internet (Layer 3)</h2>
-      <p>Your router receives the frame, strips the Layer 2 information, reads the destination IP address, and forwards the packet toward Google. This process repeats across every router along the path — through your ISP, regional providers, backbone networks, and eventually into Google's infrastructure. At each hop a new frame is built for the next link, but the IP packet inside stays intact (except the TTL field, which decrements by one at each hop to prevent infinite loops).</p>
+      <h2>Step 9  Routers forward the packet across the internet (Layer 3)</h2>
+      <p>Your router receives the frame, strips the Layer 2 information, reads the destination IP address, and forwards the packet toward Google. This process repeats across every router along the path  through your ISP, regional providers, backbone networks, and eventually into Google's infrastructure. At each hop a new frame is built for the next link, but the IP packet inside stays intact (except the TTL field, which decrements by one at each hop to prevent infinite loops).</p>
 
-      <h2>Step 10 — Google receives and processes the request</h2>
-      <p>Google's server runs the whole process in reverse. The physical layer receives the bits, the data link layer validates the frame, the network layer confirms the destination IP, the transport layer verifies the TCP segment, the presentation layer decrypts the TLS data, and the application layer finally reads the HTTP request. The server prepares an HTTP response and sends it back through the same process — encrypted, wrapped in headers, broken into packets, routed across the internet, and reassembled at your machine.</p>
+      <h2>Step 10  Google receives and processes the request</h2>
+      <p>Google's server runs the whole process in reverse. The physical layer receives the bits, the data link layer validates the frame, the network layer confirms the destination IP, the transport layer verifies the TCP segment, the presentation layer decrypts the TLS data, and the application layer finally reads the HTTP request. The server prepares an HTTP response and sends it back through the same process  encrypted, wrapped in headers, broken into packets, routed across the internet, and reassembled at your machine.</p>
       <p>From your perspective: the page loaded. Behind that, dozens of protocols and hardware devices worked together in under a second.</p>
 
       <h2>Key networking vocabulary</h2>
@@ -121,16 +121,16 @@
             <tr><th>Term</th><th>What it means</th></tr>
           </thead>
           <tbody>
-            <tr><td>Packet</td><td>A small unit of data traveling across a network — large files are broken into many packets</td></tr>
+            <tr><td>Packet</td><td>A small unit of data traveling across a network  large files are broken into many packets</td></tr>
             <tr><td>MAC address</td><td>A Layer 2 hardware identifier used within a local network (e.g. <code>00:1A:2B:3C:4D:5E</code>)</td></tr>
             <tr><td>IP address</td><td>A Layer 3 logical identifier used to route traffic between networks (e.g. <code>192.168.1.25</code>)</td></tr>
             <tr><td>Port</td><td>A number identifying which application on a device should receive incoming data (0–65535)</td></tr>
             <tr><td>Socket</td><td>The combination of an IP address and port that uniquely identifies one end of a conversation</td></tr>
             <tr><td>Default gateway</td><td>The device (usually your router) that traffic is sent to when the destination is outside the local network</td></tr>
-            <tr><td>NIC</td><td>Network Interface Card — the hardware that connects a device to the network</td></tr>
+            <tr><td>NIC</td><td>Network Interface Card  the hardware that connects a device to the network</td></tr>
             <tr><td>Switch</td><td>A Layer 2 device that forwards frames to the correct port based on destination MAC address</td></tr>
             <tr><td>Router</td><td>A Layer 3 device that forwards packets between different networks based on destination IP address</td></tr>
-            <tr><td>MTU</td><td>Maximum Transmission Unit — the largest packet a network can carry without splitting it (typically 1500 bytes for Ethernet)</td></tr>
+            <tr><td>MTU</td><td>Maximum Transmission Unit  the largest packet a network can carry without splitting it (typically 1500 bytes for Ethernet)</td></tr>
           </tbody>
         </table>
       </div>
@@ -151,7 +151,7 @@
       </div>
 
       <h2>What a SOC analyst sees in this same journey</h2>
-      <p>A security analyst watching this request doesn't see a webpage loading — they see a trail of evidence across every layer. Each stage generates different telemetry, and each stage can reveal different kinds of malicious activity.</p>
+      <p>A security analyst watching this request doesn't see a webpage loading  they see a trail of evidence across every layer. Each stage generates different telemetry, and each stage can reveal different kinds of malicious activity.</p>
 
       <div class="wu-table-wrap">
         <table class="wu-table">
@@ -170,7 +170,7 @@
         </table>
       </div>
 
-      <p>Understanding this end-to-end journey is what allows an analyst to quickly answer "where did this actually happen?" when an alert fires — which, in turn, determines which team needs to respond and which tools are actually useful.</p>
+      <p>Understanding this end-to-end journey is what allows an analyst to quickly answer "where did this actually happen?" when an alert fires  which, in turn, determines which team needs to respond and which tools are actually useful.</p>
 
     </article>
   </div>
@@ -179,11 +179,11 @@
 <nav class="wu-page-nav" aria-label="Write-up navigation">
   <div class="wu-nav-inner">
     <a class="wu-nav-btn wu-nav-prev" href="osi-model.html">
-      <span class="wu-nav-label">Back — Part 1 of 3</span>
-      <span class="wu-nav-title"><span class="wu-nav-arrow">←</span> The OSI Model — The Seven Layers</span>
+      <span class="wu-nav-label">Back  Part 1 of 3</span>
+      <span class="wu-nav-title"><span class="wu-nav-arrow">←</span> The OSI Model  The Seven Layers</span>
     </a>
     <a class="wu-nav-btn wu-nav-next" href="osi-model-security.html">
-      <span class="wu-nav-label">Continue — Part 3 of 3</span>
+      <span class="wu-nav-label">Continue  Part 3 of 3</span>
       <span class="wu-nav-title">Attacks, Defence, and the SOC Analyst's View <span class="wu-nav-arrow">→</span></span>
     </a>
   </div>
