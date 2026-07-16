@@ -40,9 +40,14 @@
  <div class="container">
  <article class="wup-article">
 
- <h2>Why networking needs standards</h2>
- <p>In the early days of networking, each vendor built proprietary systems that couldn't talk to anyone else's. IBM's equipment spoke one language, DEC's another. If you bought hardware from two different companies, there was a real chance they simply wouldn't communicate. The International Organization for Standardization stepped in with a fix: in 1984 they published the Open Systems Interconnection model, a framework that breaks network communication into seven layers so that any two devices, anywhere in the world, from any manufacturer, can exchange data using the same rulebook.</p>
- <p>Today's internet runs on TCP/IP rather than OSI directly, but the model still shapes how engineers, analysts and developers think about networks. When something breaks, the OSI stack tells you where to look. When an attack happens, it tells you which tool can stop it.</p>
+ <h2>What is the OSI model?</h2>
+ <p>The OSI model (Open Systems Interconnection model) is a conceptual framework that describes how data travels from one device to another across a network. It breaks the entire process of network communication into seven distinct layers, each with a specific, well-defined job.</p>
+ <p>Think of it like sending a letter internationally. You write it, seal it, address it, hand it to a courier who loads it onto a van, a plane, then another van, until it reaches the front door. Each step has one role and doesn't worry about the others. The OSI model works the same way, just for data traveling across a network instead of paper traveling across the world.</p>
+
+ <h2>Why do we need it?</h2>
+ <p>In the early days of networking, every hardware vendor built proprietary systems that only worked with their own equipment. IBM's devices spoke one language, DEC's spoke another. If an organisation bought hardware from two different manufacturers, there was a real chance the two systems simply couldn't communicate. That was a serious problem as networks started growing.</p>
+ <p>The International Organization for Standardization published the OSI model in 1984 as a universal rulebook. Any two devices, from any manufacturer, anywhere in the world, could now communicate as long as both sides followed the same layered structure. It gave the entire industry a shared language for the first time.</p>
+ <p>Today's internet runs on TCP/IP rather than OSI directly, but the framework is still the standard reference model taught in every certification, used in every troubleshooting conversation, and mapped against every security tool. When something breaks, the OSI stack tells you which layer to look at. When an attack happens, it tells you which control can stop it.</p>
 
  <h2>The seven layers at a glance</h2>
  <p>Each layer has one job. It takes data from the layer above, adds whatever information it needs to do its job, and hands it down. On the receiving side the whole process runs in reverse.</p>
